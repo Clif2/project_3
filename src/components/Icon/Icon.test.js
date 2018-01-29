@@ -23,7 +23,11 @@ describe('Icon Component', () => {
   it('Should contain a image with a src from "via.placeholder"', () => {
     expect(component.type()).toEqual('img')
     expect(component.find('img').prop('src')).toEqual('http://via.placeholder.com/100x100')
-
   })
 
+  it('Should have a data-attr of name and type', () => {
+    expect(component.find('img').prop('data-name')).toEqual('Sun')
+    expect(component.find('img').prop('data-type')).toEqual('weather')
+    
+  })
 })

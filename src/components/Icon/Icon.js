@@ -7,10 +7,11 @@ const Icon = ({ icon }) => {
   return (
       <img 
         src={icon.url}
+        data-name={icon.name}
+        data-type={icon.type}
       />
   )
 
 }
-
 
 export default Icon
