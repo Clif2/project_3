@@ -1,23 +1,24 @@
-// import dep 
+// import dep
 import React from 'react'
 
 //import component icons
 
-import Icon from '../Icon'
-// create class SubmissionForm 
+import Icon from '../Icon/Icon'
+// create class SubmissionForm
 
 const SubmissionForm = props => {
-  
+
   return (
-    <div> 
+    <div>
     </div>
   )
 
 }
-// list icons for weather 
-// list icons for clothing 
-// 
-// display name input 
-// display why input 
+// list icons for weather
+// list icons for clothing
+//
+// display name input
+// display why input
 
 
+export default SubmissionForm

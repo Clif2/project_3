@@ -3,7 +3,9 @@ GL
 */
 import React, { Component } from 'react'
 
-import Icon from './Icon'
+import Icon from './components/Icon/Icon'
+import SubmissionForm from './components/SubmissionForm/SubmissionForm'
+import SubmissionList from './components/SubmissionList/SubmissionList'
 
 class SubmissionContainer extends Component {
 
