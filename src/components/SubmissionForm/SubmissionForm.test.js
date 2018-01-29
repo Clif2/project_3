@@ -10,9 +10,20 @@ describe('SubmissionForm Componenet', () => {
     {name:'Rain', url:'http://via.placeholder.com/100x100', type:'weather' } 
   ]
 
-  let component 
+  const clothingIcons = [
+    {name:'Hat', url:'http://via.placeholder.com/100x100', type:'clothing'},
+    {name:'Scarf', url:'http://via.placeholder.com/100x100', type:'clothing' } 
+  ]
+
+let component 
    beforeEach(() => {
-    component = mount(<SubmissionForm weatherIcons={weatherIcons} />)
+    component = mount(
+      
+      <SubmissionForm 
+        clothingIcons={clothingIcons}
+        weatherIcons={weatherIcons} 
+      />
+    )
   })
 
 
@@ -25,6 +36,12 @@ describe('SubmissionForm Componenet', () => {
            .toBe(true)
   })
 
-
+  it('Should contain to icon subcomponents of the type clothing in clothing div', () => {
+    expect(component
+           .find('div.clothing')
+           .find(Icon)
+           .everyWhere(n => n.props('[data-type="clothing"]')))
+           .toBe(true)
+  })
 
 }) 

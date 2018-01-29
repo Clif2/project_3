@@ -10,19 +10,27 @@ const SubmissionForm = (props) => {
   
   return (
     <div> 
+      
      <div className="weather">
       {props.weatherIcons.map((item, idx) =>
         <Icon icon={item} key={idx} />
       )}
      </div>
+
+     <div className="clothing">
+      {props.clothingIcons.map((item, idx) =>
+        <Icon icon={item} key={idx} />
+      )}
+     </div>
+
+     <form> 
+      <input type='text' name='name'/>
+      <textarea name='why' /> 
+      <button>Submit</button>
+    </form>
     </div>
   )
 
 }
-// list icons for weather 
-// list icons for clothing 
-// 
-// display name input 
-// display why input 
 
 export default SubmissionForm 
