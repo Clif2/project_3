@@ -11,7 +11,18 @@ class SubmissionContainer extends Component {
 
   state = {
     inputs : [],
-    formToggle: false
+    formToggle: true, 
+    icons: {
+      weather: [
+        {name:'Sun', url:'http://via.placeholder.com/100x100', type:'weather'},
+        {name:'Rain', url:'http://via.placeholder.com/100x100', type:'weather' } 
+      ],
+
+      clothing: [
+        {name:'Hat', url:'http://via.placeholder.com/100x100', type:'clothing'},
+        {name:'Scarf', url:'http://via.placeholder.com/100x100', type:'clothing' } 
+      ] 
+    }
   }
 
 
@@ -29,7 +40,7 @@ class SubmissionContainer extends Component {
   render(){
     return (
       <div className='submission-container'>
-        {this.state.formToggle? <SubmissionForm/> :
+        {this.state.formToggle? <SubmissionForm clothingIcons={this.state.icons.clothing} weatherIcons={this.state.icons.weather}/> :
                                 <SubmissionList inputs={this.state.inputs}
                                                 toggleForm={this.toggleForm}/>}
       </div>
