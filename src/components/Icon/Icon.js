@@ -1,12 +1,12 @@
-// import dep 
+// import dep
 import React from 'react'
 // functional component that returns and image with a data-type and data-name
 
-const Icon = ({ icon }) => {
-
+const Icon = (icon) => {
   return (
-      <img 
+      <img
         src={icon.url}
+        alt={icon.name}
         data-name={icon.name}
         data-type={icon.type}
       />
