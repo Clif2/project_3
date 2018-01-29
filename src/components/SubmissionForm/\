@@ -17,9 +17,9 @@ describe('SubmissionForm Componenet', () => {
 
 
 
-  it('Should contain to icon subcomponents of the type weather in weather div', () => {
+  it('Should contain to icon subcomponents of the type weather', () => {
     expect(component
-           .find('div.weather')
+           .find('div')
            .find(Icon)
            .everyWhere(n => n.props('[data-type="weather"]')))
            .toBe(true)

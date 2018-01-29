@@ -10,9 +10,11 @@ const SubmissionForm = (props) => {
   
   return (
     <div> 
-     {props.weatherIcons.map((item, idx) =>
-      <Icon icon={item} key={idx} />
-     )}
+     <div className="weather">
+      {props.weatherIcons.map((item, idx) =>
+        <Icon icon={item} key={idx} />
+      )}
+     </div>
     </div>
   )
 
