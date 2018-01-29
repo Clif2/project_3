@@ -27,7 +27,8 @@ const SubmissionForm = (props) => {
       <input type='text' name='name'/>
       <textarea name='why' /> 
       <button>Submit</button>
-    </form>
+     </form>
+
     </div>
   )
 
