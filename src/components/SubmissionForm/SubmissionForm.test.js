@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import SubmissionForm from './SubmissionForm'
+import Icon from '../Icon/Icon.js'
 
 describe('SubmissionForm Componenet', () => {
  
@@ -17,7 +18,8 @@ describe('SubmissionForm Componenet', () => {
 
 
   it('Should contain to icon subcomponents of the type weather', () => {
-    expect(component.find('[data-type="weather"]')).toBe(2)
+    expect(component.find(Icon).length).toBe(2)
   }) 
+
 
 }) 

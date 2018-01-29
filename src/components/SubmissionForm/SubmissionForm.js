@@ -3,13 +3,16 @@ import React from 'react'
 
 //import component icons
 
-import Icon from '../Icon'
+import Icon from '../Icon/Icon.js'
 // create class SubmissionForm 
 
-const SubmissionForm = props => {
+const SubmissionForm = (props) => {
   
   return (
     <div> 
+     {props.weatherIcons.map((item, idx) =>
+      <Icon icon={item} key={idx} />
+     )}
     </div>
   )
 
