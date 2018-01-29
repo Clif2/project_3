@@ -20,4 +20,4 @@ const SubmissionForm = props => {
 // display name input 
 // display why input 
 
-
+export default SubmissionForm 
