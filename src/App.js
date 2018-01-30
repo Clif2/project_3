@@ -24,7 +24,7 @@ class App extends Component {
             />
             <Route path='/*' render={()=><Redirect to='/submissions'/>}/>
         </Switch>
-      </div>
+     </div>
     )
   }
 }

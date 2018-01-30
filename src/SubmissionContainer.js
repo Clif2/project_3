@@ -46,7 +46,7 @@ class SubmissionContainer extends Component {
 
   state = {
     inputs : [],
-    formToggle: false,
+    formToggle: true,
     updateToggle: false,
     currentID: '',
     icons: {
@@ -63,18 +63,20 @@ class SubmissionContainer extends Component {
 
     currentForm: {
       weather: '',
-      clothing: ''
+      clothing: '', 
+      name: '', 
+      why: ''
     }
   }
 
 
 //Toggles whether or not the form component is showing
   toggleForm = () => {
-    this.setState({formToggle: !this.formToggle})
+    this.setState({formToggle: !this.state.formToggle})
   }
 
   toggleUpdate = () => {
-    this.setState({updateToggle: !this.updateToggle})
+    this.setState({updateToggle: !this.state.updateToggle})
   }
 
 // when you click on Update Button in SubmissionList
@@ -110,16 +112,33 @@ class SubmissionContainer extends Component {
 //      currntForm: { e.target.type: e.target.name }
  //   })
  // }
+  
+  //Handles Submission 
+
+  handleSubmission = (nameSub, whySub) => {
+    let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
+    formCopy.name = nameSub
+    formCopy.why = whySub
+    this.setState((prevState) => {
+      return { 
+        updateToggle: false,
+        formToggle: false,
+        currentForm: formCopy }
+    })
+  }
 
   render(){
     return (
       <div className='submission-container'>
         {this.state.formToggle? <SubmissionForm
+                                    handleSubmission={this.handleSubmission}
+                                    name={this.state.currentForm.name}
+                                    why={this.state.currentForm.why}
                                     updateCurrentForm={this.updateCurrentForm}
                                     clothingIcons={this.state.icons.clothing}
                                     weatherIcons={this.state.icons.weather}
-                                    />
-                                    :
+                                />
+                                :
                                 <SubmissionList inputs={this.state.inputs}
                                                 toggleForm={this.toggleForm}
                                                 handleUpdate={this.handleUpdate}/>}
