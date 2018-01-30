@@ -7,6 +7,9 @@ import SubmissionForm from './components/SubmissionForm/SubmissionForm'
 import SubmissionList from './components/SubmissionList/SubmissionList'
 import axios from 'axios'
 
+import { getSubmittedForms, 
+         createSubmission
+       } from './request.js' 
 
 
 let testInputs = [
@@ -84,8 +87,9 @@ class SubmissionContainer extends Component {
   }
 
   // FUNCTIONS TO HANDLE FORM SUBMISSION
-
+  
   componentDidMount(){
+
     axios 
     .get('https://project3api.herokuapp.com/weather')
     .then(response =>{
@@ -97,8 +101,6 @@ class SubmissionContainer extends Component {
         return { weather : weatherCopy }
       })
     })
-    //make axios call to project3_API
-    // this.setState({inputs: testInputs})
   }
 
   //Updates currentForm State on Click
