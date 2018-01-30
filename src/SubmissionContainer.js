@@ -1,5 +1,5 @@
 /*
-GL
+GL & CP
 */
 import React, { Component } from 'react'
 
@@ -26,7 +26,7 @@ let testInputs = [
   name: 'Josh',
   clothes: [{
     name: 'Sunglasses',
-    imgURL: "http://via.placeholder.com/150x150"
+    imgURL: 'https://tinyurl.com/y9gvv5l6'
   }],
   why: "Becaus its brite"  },
 
@@ -37,11 +37,12 @@ let testInputs = [
     clothes: [
       {
         name: 'Coat',
-        imgURL: "http://via.placeholder.com/150x150"
+        imgURL: 'https://tinyurl.com/y73odabj'
       },
       {
         name: 'Hat',
-        imgURL: "http://via.placeholder.com/150x150"
+        imgURL: 'https://tinyurl.com/ydxohys4'
+        // "http://via.placeholder.com/150x150"
       }
     ],
     why: "to stay warm"}
@@ -60,13 +61,13 @@ class SubmissionContainer extends Component {
     currentID: '',
     icons: {
       weather: [
-        {name:'Sun', url:'http://via.placeholder.com/100x100', type:'weather'},
-        {name:'Rain', url:'http://via.placeholder.com/100x100', type:'weather' }
+        {name:'Sun', url:'https://tinyurl.com/yal89jos', type:'weather'},
+        {name:'Cold', url:'https://tinyurl.com/ybqbjvmv', type:'weather' }
       ],
 
       clothing: [
-        {name:'Hat', url:'http://via.placeholder.com/100x100', type:'clothing'},
-        {name:'Scarf', url:'http://via.placeholder.com/100x100', type:'clothing' }
+        {name:'Hat', url:'https://tinyurl.com/ydxohys4', type:'clothing'},
+        {name:'Scarf', url:'https://tinyurl.com/yb7y3ge3', type:'clothing' }
       ]
     },
 

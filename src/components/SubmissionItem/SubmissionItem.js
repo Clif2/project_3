@@ -7,13 +7,19 @@ import React from 'react'
 //import component icons
 import Icon from '../Icon/Icon'
 
+const iconStyle = {
+  height: '150px',
+  width: '150px'
+}
+
 
 
 const SubmissionItem = props => {
       let clothing = props.input.clothes.map( (item, index) => {
           let theIcon = { url: item.imgURL,
                           name:item.name,
-                          type:'clothing'}
+                          type:'clothing',
+                          style: iconStyle}
                       return ( <Icon key={index}
                                     icon={theIcon}
                                     />)
@@ -21,7 +27,7 @@ const SubmissionItem = props => {
 
   return (
 
-    <div className='submission-item'>
+    <div className='submission-item' style={props.style}>
       <h3>When it's {props.input.weather} {props.input.name} wears:</h3>
       <div className='icon-list'>
         {clothing}
