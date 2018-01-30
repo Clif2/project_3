@@ -13,11 +13,12 @@ const iconStyle = {
 }
 
 const WeatherList = props => {
-  console.log('WeatherList');
-  console.log(props);
+
+
+
   let weathers = props.weathers.map( (item, index)=>
       {
-        let theIcon = { url: item.imgURL,
+        let theIcon = { imgURL: item.imgURL,
                         name: item.name,
                         type: 'weather',
                         style: iconStyle}

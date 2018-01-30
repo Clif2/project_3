@@ -48,7 +48,7 @@ class SubmissionContainer extends Component {
     formToggle: true,
     updateToggle: false,
     currentID: '',
-    
+
 
     weather: [],
     clothing: [
@@ -59,8 +59,8 @@ class SubmissionContainer extends Component {
 
     currentForm: {
       weather: '',
-      clothing: '', 
-      name: '', 
+      clothing: '',
+      name: '',
       why: ''
     }
   }
@@ -86,9 +86,9 @@ class SubmissionContainer extends Component {
   // FUNCTIONS TO HANDLE FORM SUBMISSION
 
   componentDidMount(){
-    axios 
+    axios
     .get('https://project3api.herokuapp.com/weather')
-    .then(response =>{
+    .then(response => {
       let weatherCopy = JSON.parse(JSON.stringify(this.state.weather))
       console.log(weatherCopy)
       weatherCopy = response.data
@@ -102,7 +102,7 @@ class SubmissionContainer extends Component {
   }
 
   //Updates currentForm State on Click
- 
+
   updateCurrentForm = (type, name) => {
     //copying current state and make changes,
     //basics of idea found at www.fourm.freecodecamp.org...
@@ -119,15 +119,15 @@ class SubmissionContainer extends Component {
 //      currntForm: { e.target.type: e.target.name }
  //   })
  // }
-  
-  //Handles Submission 
+
+  //Handles Submission
 
   handleSubmission = (nameSub, whySub) => {
     let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
     formCopy.name = nameSub
     formCopy.why = whySub
     this.setState((prevState) => {
-      return { 
+      return {
         updateToggle: false,
         formToggle: false,
         currentForm: formCopy }

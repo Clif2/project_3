@@ -2,6 +2,7 @@
 GL & CP
 */
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import WeatherList from './components/WeatherList/WeatherList'
 import WeatherView from './components/WeatherView/WeatherView'
@@ -47,15 +48,29 @@ class WeatherContainer extends Component {
   }
 
   componentDidMount(){
-    console.log('componentDidMount');
+    axios
+    .get('https://project3api.herokuapp.com/weather')
+    .then(response => {
+      this.setState((prevState) => {
+        return {weathers: response.data}
+      })
+
+      console.log(this.state.weathers)
+    })
     //make axios call to project3_API
-    this.setState({weathers: testWeathers})
-    console.log(this.state.weathers);
+    // this.setState({inputs: testInputs})
   }
+
+  // componentDidMount(){
+  //   console.log('componentDidMount');
+  //   //make axios call to project3_API
+  //   this.setState({weathers: testWeathers})
+  //   console.log(this.state.weathers);
+  // }
 
   render(){
     return (
-      <div className='submission-container'>
+      <div className='weather-container'>
         {this.state.weatherListToggle? <WeatherList
                                     handleUpdate={this.handleUpdate}
                                     weathers={this.state.weathers}
