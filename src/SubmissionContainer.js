@@ -19,14 +19,20 @@ import SubmissionList from './components/SubmissionList/SubmissionList'
 
 
 let testInputs = [
-{weather: 'Sunny',
+
+{
+  _id: '1',
+  weather: 'Sunny',
   name: 'Josh',
   clothes: [{
     name: 'Sunglasses',
     imgURL: "http://via.placeholder.com/150x150"
   }],
-  why: "Becaus its brite"},
-  {weather: 'Cold',
+  why: "Becaus its brite"  },
+
+  {
+    _id: '2',
+    weather: 'Cold',
     name: 'Melody',
     clothes: [
       {
@@ -38,8 +44,7 @@ let testInputs = [
         imgURL: "http://via.placeholder.com/150x150"
       }
     ],
-    why: "to stay warm"},
-
+    why: "to stay warm"}
 ]
 
 
@@ -51,6 +56,8 @@ class SubmissionContainer extends Component {
   state = {
     inputs : [],
     formToggle: false,
+    updateToggle: false,
+    currentID: '',
     icons: {
       weather: [
         {name:'Sun', url:'http://via.placeholder.com/100x100', type:'weather'},
@@ -73,6 +80,17 @@ class SubmissionContainer extends Component {
 //Toggles whether or not the form component is showing
   toggleForm = () => {
     this.setState({formToggle: !this.formToggle})
+  }
+
+  toggleUpdate = () => {
+    this.setState({updateToggle: !this.updateToggle})
+  }
+
+// when you click on Update Button in SubmissionList
+  handleUpdate = (id) => {
+    this.setState({ formToggle: true,
+                    updateToggle: true,
+                    currentID: id})
   }
 
   // FUNCTIONS TO HANDLE FORM SUBMISSION
