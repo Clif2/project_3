@@ -10,7 +10,7 @@ class SubmissionContainer extends Component {
 
   state = {
     inputs : [],
-    formToggle: true, 
+    formToggle: false, 
     icons: {
       weather: [
         {name:'Sun', url:'http://via.placeholder.com/100x100', type:'weather'},
