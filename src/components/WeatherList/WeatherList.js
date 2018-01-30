@@ -31,7 +31,7 @@ const WeatherList = props => {
 
   return (
     <div>
-     <h1>Choose A Weather</h1>
+     <h1>Choose Your Weather</h1>
      {weathers}
     </div>
   )
