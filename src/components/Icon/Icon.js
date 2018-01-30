@@ -1,6 +1,6 @@
 import React from 'react'
 
-// functional component that returns and image with a data-type and data-name
+// functional component that returns an icon 
 
 const Icon = ({updateCurrentForm, icon}) => {
   
@@ -12,6 +12,7 @@ const Icon = ({updateCurrentForm, icon}) => {
       <img 
         onClick={onClick}
         src={icon.url}
+        alt={icon.name}
       />
   )
 
