@@ -7,16 +7,6 @@ import SubmissionForm from './components/SubmissionForm/SubmissionForm'
 import SubmissionList from './components/SubmissionList/SubmissionList'
 
 
-// const InputSchema = new mongoose.Schema({
-//   weather: String,
-//   name: String,
-//   clothes: [{
-//     name: String,
-//     imgURL: String
-//   }],
-//   why: String
-// })
-
 
 let testInputs = [
 
