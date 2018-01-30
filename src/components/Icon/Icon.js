@@ -7,7 +7,7 @@ const Icon = ({icon}) => {
   return (
       <img
         style={icon.style}
-        src={icon.url}
+        src={icon.imgURL}
         alt={icon.name}
       />
   )
