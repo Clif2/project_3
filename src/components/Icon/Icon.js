@@ -2,16 +2,16 @@ import React from 'react'
 
 // functional component that returns and image with a data-type and data-name
 
-const Icon = props => {
+const Icon = ({updateCurrentForm, icon}) => {
   
   const onClick = e => {
-  props.updateCurrentForm(props.icon.type, props.icon.name) 
+  updateCurrentForm(icon.type, icon.name) 
   }
 
   return (
       <img 
         onClick={onClick}
-        src={props.icon.url}
+        src={icon.url}
       />
   )
 
