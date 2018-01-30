@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 
 import SubmissionForm from './components/SubmissionForm/SubmissionForm'
 import SubmissionList from './components/SubmissionList/SubmissionList'
+import axios from 'axios'
 
 
 
@@ -37,8 +38,6 @@ let testInputs = [
     ],
     why: "to stay warm"}
 ]
-
-
 
 
 
@@ -90,12 +89,18 @@ class SubmissionContainer extends Component {
   // FUNCTIONS TO HANDLE FORM SUBMISSION
 
   componentDidMount(){
+    axios 
+    .get('https://project3api.herokuapp.com/weather')
+    .then(response =>{
+    this.setState(prevState => ({icons: {weather: response.data,
+                                        clothing: []}}))
+    })
     //make axios call to project3_API
-    this.setState({inputs: testInputs})
+    // this.setState({inputs: testInputs})
   }
 
   //Updates currentForm State on Click
-
+ 
   updateCurrentForm = (type, name) => {
     //copying current state and make changes,
     //basics of idea found at www.fourm.freecodecamp.org...
