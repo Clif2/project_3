@@ -1,15 +1,23 @@
 import React from 'react'
 
-import Icon from '../Icon/Icon.js'
+import IconButton from '../IconButton/IconButton.js'
 
 const SubmissionForm = (props) => {
+  
+  const onSubmit = e => {
+    e.preventDefault()
+    let name = e.target.name.value
+    let why = e.target.why.value                                            
+    props.handleSubmission(name, why)  
+  }
+    
   
   return (
     <div> 
       
      <div className="weather">
       {props.weatherIcons.map((item, idx) =>
-        <Icon 
+        <IconButton 
           updateCurrentForm={props.updateCurrentForm} 
           icon={item} 
           key={idx} 
@@ -19,7 +27,7 @@ const SubmissionForm = (props) => {
 
      <div className="clothing">
       {props.clothingIcons.map((item, idx) =>
-        <Icon 
+        <IconButton 
           updateCurrentForm={props.updateCurrentForm} 
           icon={item} 
           key={idx} 
@@ -27,10 +35,10 @@ const SubmissionForm = (props) => {
       )}
      </div>
 
-     <form> 
-      <input type='text' name='name'/>
+     <form onSubmit={onSubmit}> 
+      <input type='text'  name='name'/>
       <textarea name='why' /> 
-      <button>Submit</button>
+      <button type='submit'>Submit</button>
      </form>
 
     </div>
