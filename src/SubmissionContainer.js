@@ -3,7 +3,6 @@ GL
 */
 import React, { Component } from 'react'
 
-import Icon from './components/Icon/Icon'
 import SubmissionForm from './components/SubmissionForm/SubmissionForm'
 import SubmissionList from './components/SubmissionList/SubmissionList'
 
@@ -51,7 +50,23 @@ class SubmissionContainer extends Component {
 
   state = {
     inputs : [],
-    formToggle: false
+    formToggle: false, 
+    icons: {
+      weather: [
+        {name:'Sun', url:'http://via.placeholder.com/100x100', type:'weather'},
+        {name:'Rain', url:'http://via.placeholder.com/100x100', type:'weather' } 
+      ],
+
+      clothing: [
+        {name:'Hat', url:'http://via.placeholder.com/100x100', type:'clothing'},
+        {name:'Scarf', url:'http://via.placeholder.com/100x100', type:'clothing' } 
+      ] 
+    },
+
+    currentForm: {
+      weather: '',
+      clothing: ''
+    } 
   }
 
 
@@ -66,11 +81,35 @@ class SubmissionContainer extends Component {
     //make axios call to project3_API
     this.setState({inputs: testInputs})
   }
+  
+  //Updates currentForm State on Click 
+  
+  updateCurrentForm = (type, name) => {
+    //copying current state and make changes, 
+    //basics of idea found at www.fourm.freecodecamp.org...
+    //.../t/reactjs-using-state-to-update-single-property-on-an-object
+    let formCopy = JSON.parse(JSON.stringify(this.state.currentForm)) 
+    console.log(formCopy)
+    formCopy[type] = name
+    this.setState((prevState) => { 
+      return {currentForm: formCopy}
+   })
+
+  } 
+ //   setState( prevState => ({
+//      currntForm: { e.target.type: e.target.name }
+ //   })
+ // }
 
   render(){
     return (
       <div className='submission-container'>
-        {this.state.formToggle? <SubmissionForm/> :
+        {this.state.formToggle? <SubmissionForm 
+                                    updateCurrentForm={this.updateCurrentForm} 
+                                    clothingIcons={this.state.icons.clothing} 
+                                    weatherIcons={this.state.icons.weather}
+                                    /> 
+                                    :
                                 <SubmissionList inputs={this.state.inputs}
                                                 toggleForm={this.toggleForm}/>}
       </div>
