@@ -88,6 +88,7 @@ class SubmissionContainer extends Component {
 
 // when you click on Update Button in SubmissionList
   handleUpdate = (id) => {
+    console.log('id=>'+id);
     this.setState({ formToggle: true,
                     updateToggle: true,
                     currentID: id})
@@ -129,7 +130,8 @@ class SubmissionContainer extends Component {
                                     />
                                     :
                                 <SubmissionList inputs={this.state.inputs}
-                                                toggleForm={this.toggleForm}/>}
+                                                toggleForm={this.toggleForm}
+                                                handleUpdate={this.handleUpdate}/>}
       </div>
     )
   }
