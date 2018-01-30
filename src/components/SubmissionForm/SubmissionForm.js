@@ -1,24 +1,34 @@
-// import dep
 import React from 'react'
 
-//import component icons
+import Icon from '../Icon/Icon.js'
 
-import Icon from '../Icon/Icon'
-// create class SubmissionForm
-
-const SubmissionForm = props => {
-
+const SubmissionForm = (props) => {
+  
   return (
-    <div>
+    <div> 
+      
+     <div className="weather">
+      {props.weatherIcons.map((item, idx) =>
+        <Icon icon={item} key={idx} />
+      )}
+     </div>
+
+     <div className="clothing">
+      {props.clothingIcons.map((item, idx) =>
+        <Icon icon={item} key={idx} />
+      )}
+     </div>
+
+     <form> 
+      <input type='text' name='name'/>
+      <textarea name='why' /> 
+      <button>Submit</button>
+     </form>
+
     </div>
   )
 
 }
-// list icons for weather
-// list icons for clothing
-//
-// display name input
-// display why input
-
 
 export default SubmissionForm
+
