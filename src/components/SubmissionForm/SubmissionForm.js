@@ -11,7 +11,12 @@ const SubmissionForm = (props) => {
     props.handleSubmission(name, why)  
   }
     
-  
+ 
+  const onUpdate = e => {
+    e.preventDefault()
+    props.handleUpdate  
+  }
+
   return (
     <div> 
       
@@ -35,13 +40,24 @@ const SubmissionForm = (props) => {
       )}
      </div>
 
-     <form onSubmit={onSubmit}> 
-      <input type='text'  name='name'/>
-      <textarea name='why' /> 
-      <button type='submit'>Submit</button>
-     </form>
+     {props.update == false?
 
-    </div>
+      <form onSubmit={onSubmit}> 
+        <input type='text'  name='name'/>
+        <textarea name='why' /> 
+        <button type='submit'>Submit</button>
+      </form>
+      :
+      <form> 
+        <input type='text'  name='name'/>
+        <textarea name='why' /> 
+        <button type='submit'>Update</button>
+        <button name='delete'>Delete</button> 
+      </form>
+      }
+
+           
+  </div>
   )
 
 }

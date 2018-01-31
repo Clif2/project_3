@@ -13,7 +13,6 @@ const oddStyle = {
   background: 'grey'
 }
 
-
 const SubmissionList = props => {
   let inputs = props.inputs.map( (input, index)=>
       {
@@ -25,7 +24,6 @@ const SubmissionList = props => {
                                  input={input}
                                  handleUpdate={props.handleUpdate}/>)
       })
-
 
 
   return (
