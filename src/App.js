@@ -12,6 +12,7 @@ import SubmissionContainer from './SubmissionContainer'
 import Nav from './components/Nav/Nav'
 import WeatherContainer from './WeatherContainer'
 import About from './components/About/About'
+import NotFound from './components/NotFound/NotFound'
 
 class App extends Component {
   render() {
@@ -21,10 +22,10 @@ class App extends Component {
         <Switch>
             <Route path={`/submissions`} component={SubmissionContainer}/>
             <Route path={`/weather`} component={WeatherContainer}/>
-            <Route path={'/about'} component={About}
-            />
+            <Route path={'/about'} component={About}/>
 
-            <Route path='/*' render={()=><Redirect to='/submissions'/>}/>
+            <Route path='/' render={()=><Redirect to='/submissions'/>}/>
+            <Route path='*' component={NotFound}/>
         </Switch>
      </div>
     )
