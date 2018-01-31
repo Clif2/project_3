@@ -86,6 +86,7 @@ class SubmissionContainer extends Component {
   // FUNCTIONS TO HANDLE FORM SUBMISSION
 
   componentDidMount(){
+    console.log('componentDidMount');
     axios
     .get('https://project3api.herokuapp.com/weather')
     .then(response => {
