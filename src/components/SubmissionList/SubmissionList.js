@@ -1,7 +1,7 @@
 /*
 GL
 */
-import React, { Component } from 'react'
+import React from 'react'
 
 //import components
 import SubmissionItem from '../SubmissionItem/SubmissionItem'
