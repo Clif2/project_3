@@ -13,38 +13,6 @@ import { getSubmittedForms,
        } from './request.js' 
 
 
-let testInputs = [
-
-{
-  _id: '1',
-  weather: 'Sunny',
-  name: 'Josh',
-  clothes: [{
-    name: 'Sunglasses',
-    imgURL: 'https://tinyurl.com/y9gvv5l6'
-  }],
-  why: "Becaus its brite"  },
-
-  {
-    _id: '2',
-    weather: 'Cold',
-    name: 'Melody',
-    clothes: [
-      {
-        name: 'Coat',
-        imgURL: 'https://tinyurl.com/y73odabj'
-      },
-      {
-        name: 'Hat',
-        imgURL: 'https://tinyurl.com/ydxohys4'
-        // "http://via.placeholder.com/150x150"
-      }
-    ],
-    why: "to stay warm"}
-]
-
-
-
 class SubmissionContainer extends Component {
 
   state = {
