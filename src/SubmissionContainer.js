@@ -8,7 +8,8 @@ import SubmissionList from './components/SubmissionList/SubmissionList'
 import axios from 'axios'
 
 import { getSubmittedForms, 
-         createSubmission
+         createSubmission,
+         updateSubmission
        } from './request.js' 
 
 
@@ -89,18 +90,36 @@ class SubmissionContainer extends Component {
   // FUNCTIONS TO HANDLE FORM SUBMISSION
   
   componentDidMount(){
+     
+    //get submitted forms 
+    getSubmittedForms()
+      .then(data => {
+        this.setState(prevState => {
+          console.log('getSumittedForms: ', data) 
+          return { input : data}
+        })
+    })
 
+    //get weather data and icons
+    console.group('Weather API')
     axios 
     .get('https://project3api.herokuapp.com/weather')
     .then(response =>{
-      let weatherCopy = JSON.parse(JSON.stringify(this.state.weather))
-      console.log(weatherCopy)
-      weatherCopy = response.data
+      console.log('api call repsonse :', response )
       this.setState((prevState) => {
-        console.log(weatherCopy)
-        return { weather : weatherCopy }
+        console.table(response.data)
+        return { weather : response.data }
       })
     })
+    console.groupEnd()
+  }
+
+  compnentDidUpdate(prevProps, prevState){
+    
+    if (prevState.currentID != this.state.currentID) {
+      console.log('currentID changed!')
+    } 
+
   }
 
   //Updates currentForm State on Click
@@ -110,36 +129,61 @@ class SubmissionContainer extends Component {
     //basics of idea found at www.fourm.freecodecamp.org...
     //.../t/reactjs-using-state-to-update-single-property-on-an-object
     let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
-    console.log(formCopy)
+    console.log('updateCurrentFrom copy: ',formCopy)
     formCopy[type] = name
     this.setState((prevState) => {
       return {currentForm: formCopy}
    })
 
   }
- //   setState( prevState => ({
-//      currntForm: { e.target.type: e.target.name }
- //   })
- // }
   
   //Handles Submission 
 
+  submitFormData = () => {
+    console.log('Submit Form Data Fired')
+    createSubmission(this.state.currentForm)
+  }
+
+  updateFormDate = () => {
+    console.log('Update Form Fired')
+    updateSubmission( this.state.currentID, this.state.currentForm )
+  }
+
   handleSubmission = (nameSub, whySub) => {
+    //copies currnet form
     let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
     formCopy.name = nameSub
     formCopy.why = whySub
-    this.setState((prevState) => {
+    
+    this.setState((prevState,) => {
       return { 
         updateToggle: false,
         formToggle: false,
         currentForm: formCopy }
-    })
+    }, this.submitFormData())
   }
+
+
+  //Handles Updating Input 
+   handleUpdate = (nameSub, whySub) => {
+     let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
+     formCopy.name = nameSub
+     formCopy.why = whySub
+    
+     this.setState((prevState,) => {
+       return { 
+         updateToggle: false,
+         formToggle: false,
+         currentForm: formCopy }
+     }, this.updateFormData())
+    }   
+    
 
   render(){
     return (
       <div className='submission-container'>
         {this.state.formToggle? <SubmissionForm
+                                    update={this.state.updateToggle}
                                     handleSubmission={this.handleSubmission}
                                     name={this.state.currentForm.name}
                                     why={this.state.currentForm.why}
