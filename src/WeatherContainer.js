@@ -41,32 +41,27 @@ class WeatherContainer extends Component {
 // when you click on Weather Button in WeatherList
   handleUpdate = (type, name) => {
     console.log('name=>'+name);
-
+    //START HERE
       //later this will do an api call to fill in the weather info
     this.setState({ weatherListToggle: false,
                     currentWeather: {name:name}})
   }
 
   componentDidMount(){
+    //make axios call to project3_API
     axios
     .get('https://project3api.herokuapp.com/weather')
     .then(response => {
       this.setState((prevState) => {
         return {weathers: response.data}
       })
-
-      console.log(this.state.weathers)
+      // console.log(this.state.weathers)
     })
-    //make axios call to project3_API
+
     // this.setState({inputs: testInputs})
   }
 
-  // componentDidMount(){
-  //   console.log('componentDidMount');
-  //   //make axios call to project3_API
-  //   this.setState({weathers: testWeathers})
-  //   console.log(this.state.weathers);
-  // }
+
 
   render(){
     return (
