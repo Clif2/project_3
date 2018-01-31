@@ -4,10 +4,10 @@ import React from 'react'
 import Icon from '../Icon/Icon'
 
 
-const IconButton = ({updateCurrentForm, icon}) => {
+const IconButton = ({updateCurrentForm, icon, type}) => {
 
   const onClick = e => {
-    updateCurrentForm(icon.type, icon.name)
+    updateCurrentForm(type, icon.name)
   }
 
   return (

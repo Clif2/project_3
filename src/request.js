@@ -16,14 +16,15 @@ export function getSubmittedForms() {
 export function createSubmission(data)  {
   return axios.post(url + 'input', data)
           .then(response => {
-            console.log(response)
+            return response.data
           })
   }
 
 export function updateSubmission( id, data ) {
   return axios.put(url + 'input/' + id, data )
           .then(response => {
-            console.log(response)
+            console.log(url + 'input/'+id, data)
+            return console.log('update', response)
           })
 }
 

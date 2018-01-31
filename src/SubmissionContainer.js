@@ -80,11 +80,17 @@ class SubmissionContainer extends Component {
   }
 
 // when you click on Update Button in SubmissionList
-  handleUpdate = (id) => {
-    console.log('id=>'+id);
+  handleUpdate = ( id ) => {
+    console.log('id=> '+id);
+    console.log('currrent inputs: ', this.state.inputs)
+    let submission = this.state.inputs.filter(submissions => submissions._id = id)
+    console.log(submission) 
     this.setState({ formToggle: true,
                     updateToggle: true,
-                    currentID: id})
+                    currentID: id,
+                    currentForm: submission[0]
+                  })
+    
   }
 
   // FUNCTIONS TO HANDLE FORM SUBMISSION
@@ -96,7 +102,7 @@ class SubmissionContainer extends Component {
       .then(data => {
         this.setState(prevState => {
           console.log('getSumittedForms: ', data) 
-          return { input : data}
+          return { inputs : data}
         })
     })
 
@@ -134,47 +140,59 @@ class SubmissionContainer extends Component {
     this.setState((prevState) => {
       return {currentForm: formCopy}
    })
+  }
 
+  updateCurrentFromFields = (field, value) => {
+    let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
+    formCopy[field] = value
+    console.log(formCopy)
+    this.setState((prevState) => {
+      return {currentForm: formCopy} 
+    })
   }
   
   //Handles Submission 
 
   submitFormData = () => {
     console.log('Submit Form Data Fired')
+    console.table(this.state.currentForm)
     createSubmission(this.state.currentForm)
   }
 
-  updateFormDate = () => {
+  updateFormData = () => {
     console.log('Update Form Fired')
+    console.table(this.state.currentForm)
     updateSubmission( this.state.currentID, this.state.currentForm )
   }
 
   handleSubmission = (nameSub, whySub) => {
     //copies currnet form
-    let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
-    formCopy.name = nameSub
-    formCopy.why = whySub
+    //let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
+    //formCopy.name = nameSub
+    //formCopy.why = whySub
     
-    this.setState((prevState,) => {
+    this.setState((prevState) => {
       return { 
         updateToggle: false,
         formToggle: false,
-        currentForm: formCopy }
+        //currentForm: formCopy 
+        }
     }, this.submitFormData())
   }
 
 
   //Handles Updating Input 
-   handleUpdate = (nameSub, whySub) => {
-     let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
-     formCopy.name = nameSub
-     formCopy.why = whySub
-    
-     this.setState((prevState,) => {
+   handleSubmissionUpdate = (nameSub, whySub) => {
+     //let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
+     //formCopy.name = nameSub
+     //formCopy.why = whySub
+     //console.table(formCopy) 
+     this.setState((prevState) => {
        return { 
          updateToggle: false,
          formToggle: false,
-         currentForm: formCopy }
+         //currentForm: formCopy 
+       }
      }, this.updateFormData())
     }   
     
@@ -182,19 +200,29 @@ class SubmissionContainer extends Component {
   render(){
     return (
       <div className='submission-container'>
-        {this.state.formToggle? <SubmissionForm
-                                    update={this.state.updateToggle}
-                                    handleSubmission={this.handleSubmission}
-                                    name={this.state.currentForm.name}
-                                    why={this.state.currentForm.why}
-                                    updateCurrentForm={this.updateCurrentForm}
-                                    clothingIcons={this.state.clothing}
-                                    weatherIcons={this.state.weather}
-                                />
-                                :
-                                <SubmissionList inputs={this.state.inputs}
-                                                toggleForm={this.toggleForm}
-                                                handleUpdate={this.handleUpdate}/>}
+        {this.state.formToggle? 
+          <SubmissionForm
+            update={this.state.updateToggle}
+            
+            handleUpdate={this.handleSubmissionUpdate}
+            handleSubmission={this.handleSubmission}
+            
+            name={this.state.currentForm.name}
+            why={this.state.currentForm.why}
+            
+            updateCurrentForm={this.updateCurrentForm}
+            updateFields={this.updateCurrentFromFields}
+
+            clothingIcons={this.state.clothing}
+            weatherIcons={this.state.weather}
+           />
+           :
+           <SubmissionList 
+            inputs={this.state.inputs}
+            toggleForm={this.toggleForm}
+            handleUpdate={this.handleUpdate}
+           />
+        }
       </div>
     )
   }

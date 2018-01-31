@@ -14,7 +14,15 @@ const SubmissionForm = (props) => {
  
   const onUpdate = e => {
     e.preventDefault()
-    props.handleUpdate  
+    let name = e.target.name.value
+    let why = e.target.why.value
+    props.handleUpdate(name, why)  
+  }
+
+  const updateFields = (e) => {
+    e.preventDefault()
+    let value  = e.target.value
+    props.updateFields(e.target.name, value)
   }
 
   return (
@@ -25,6 +33,7 @@ const SubmissionForm = (props) => {
         <IconButton 
           updateCurrentForm={props.updateCurrentForm} 
           icon={item} 
+          type='weather'
           key={idx} 
         />
       )}
@@ -35,6 +44,7 @@ const SubmissionForm = (props) => {
         <IconButton 
           updateCurrentForm={props.updateCurrentForm} 
           icon={item} 
+          type='clothing'
           key={idx} 
         />
       )}
@@ -43,14 +53,14 @@ const SubmissionForm = (props) => {
      {props.update == false?
 
       <form onSubmit={onSubmit}> 
-        <input type='text'  name='name'/>
-        <textarea name='why' /> 
+        <input onChange={updateFields} type='text'  name='name'/>
+        <textarea onChange={updateFields} name='why' /> 
         <button type='submit'>Submit</button>
       </form>
       :
-      <form> 
-        <input type='text'  name='name'/>
-        <textarea name='why' /> 
+      <form onSubmit={onUpdate}> 
+        <input onChange={updateFields} type='text' name='name'/>
+        <textarea onChange={updateFields} name='why' /> 
         <button type='submit'>Update</button>
         <button name='delete'>Delete</button> 
       </form>
