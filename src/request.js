@@ -28,8 +28,8 @@ export function updateSubmission( id, data ) {
           })
 }
 
-export function removeSubmission( id, data ) {
-  return axios.delete(url + 'input/' + id, data )
+export function removeSubmission( id ) {
+  return axios.delete(url + 'input/' + id )
           .then(response => {
             console.log(response)
           })

@@ -10,7 +10,6 @@ const SubmissionForm = (props) => {
     let why = e.target.why.value                                            
     props.handleSubmission(name, why)  
   }
-    
  
   const onUpdate = e => {
     e.preventDefault()
@@ -23,6 +22,11 @@ const SubmissionForm = (props) => {
     e.preventDefault()
     let value  = e.target.value
     props.updateFields(e.target.name, value)
+  }
+
+  const deleteSubmission = e => {
+    e.preventDefault()
+    props.handleDelete() 
   }
 
   return (
@@ -62,7 +66,7 @@ const SubmissionForm = (props) => {
         <input onChange={updateFields} type='text' name='name'/>
         <textarea onChange={updateFields} name='why' /> 
         <button type='submit'>Update</button>
-        <button name='delete'>Delete</button> 
+        <button onClick={deleteSubmission} name='delete'>Delete</button> 
       </form>
       }
 

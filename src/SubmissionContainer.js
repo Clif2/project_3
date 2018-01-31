@@ -9,7 +9,8 @@ import axios from 'axios'
 
 import { getSubmittedForms, 
          createSubmission,
-         updateSubmission
+         updateSubmission, 
+         removeSubmission
        } from './request.js' 
 
 
@@ -21,13 +22,8 @@ class SubmissionContainer extends Component {
     updateToggle: false,
     currentID: '',
 
-
     weather: [],
-    clothing: [
-        {name:'Hat', imgURL:'https://tinyurl.com/ydxohys4', type:'clothing'},
-        {name:'Scarf', imgURL:'https://tinyurl.com/yb7y3ge3', type:'clothing' }
-    ],
-
+    clothing: [],
 
     currentForm: {
       weather: '',
@@ -88,14 +84,18 @@ class SubmissionContainer extends Component {
     console.groupEnd()
   }
 
-  compnentDidUpdate(prevProps, prevState){
-    
-    if (prevState.currentID != this.state.currentID) {
-      console.log('currentID changed!')
-    } 
-
-  }
-
+  componentDidUpdate(prevProps, prevState){
+    console.log('checking', prevState.inputs.length, this.state.inputs.length) 
+    if (prevState.inputs.length != this.state.inputs.length ) {
+      getSubmittedForms()
+      .then(data => {
+        this.setState(prevState => {
+          console.log('getSumittedForms: ', data) 
+          return { inputs : data}
+        })
+      })
+    }
+    }
   //Updates currentForm State on Click
 
   updateCurrentForm = (type, name) => {
@@ -121,6 +121,10 @@ class SubmissionContainer extends Component {
   
   //Handles Submission 
 
+  handleForcedUpdate = () => {
+    this.forceUpdate
+  }
+
   submitFormData = () => {
     console.log('Submit Form Data Fired')
     console.table(this.state.currentForm)
@@ -131,6 +135,15 @@ class SubmissionContainer extends Component {
     console.log('Update Form Fired')
     console.table(this.state.currentForm)
     updateSubmission( this.state.currentID, this.state.currentForm )
+  }
+
+  handleDelete = () => {
+    console.log('DELETED :', this.state.currentID)
+    removeSubmission(this.state.currentID)
+    this.setState({
+      currentID: '', 
+      formToggle: false
+    })
   }
 
   handleSubmission = (nameSub, whySub) => {
@@ -171,18 +184,18 @@ class SubmissionContainer extends Component {
         {this.state.formToggle? 
           <SubmissionForm
             update={this.state.updateToggle}
+            name={this.state.currentForm.name}
+            why={this.state.currentForm.why}
+            clothingIcons={this.state.clothing}
+            weatherIcons={this.state.weather}
             
             handleUpdate={this.handleSubmissionUpdate}
             handleSubmission={this.handleSubmission}
-            
-            name={this.state.currentForm.name}
-            why={this.state.currentForm.why}
+            handleDelete={this.handleDelete}
             
             updateCurrentForm={this.updateCurrentForm}
             updateFields={this.updateCurrentFromFields}
-
-            clothingIcons={this.state.clothing}
-            weatherIcons={this.state.weather}
+            forceUpdate={this.handleForceUpdate}
            />
            :
            <SubmissionList 
