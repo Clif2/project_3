@@ -7,11 +7,12 @@ import SubmissionForm from './components/SubmissionForm/SubmissionForm'
 import SubmissionList from './components/SubmissionList/SubmissionList'
 import axios from 'axios'
 
-import { getSubmittedForms, 
+import { getSubmittedForms,
          createSubmission,
          updateSubmission, 
          removeSubmission
        } from './request.js' 
+       } from './request.js'
 
 
 class SubmissionContainer extends Component {
@@ -48,31 +49,31 @@ class SubmissionContainer extends Component {
     console.log('id=> '+id);
     console.log('currrent inputs: ', this.state.inputs)
     let submission = this.state.inputs.filter(submissions => submissions._id = id)
-    console.log(submission) 
+    console.log(submission)
     this.setState({ formToggle: true,
                     updateToggle: true,
                     currentID: id,
                     currentForm: submission[0]
                   })
-    
+
   }
 
   // FUNCTIONS TO HANDLE FORM SUBMISSION
-  
+
   componentDidMount(){
-     
-    //get submitted forms 
+
+    //get all inputs
     getSubmittedForms()
       .then(data => {
         this.setState(prevState => {
-          console.log('getSumittedForms: ', data) 
+          console.log('getSumittedForms: ', data)
           return { inputs : data}
         })
     })
 
     //get weather data and icons
     console.group('Weather API')
-    axios 
+    axios
     .get('https://project3api.herokuapp.com/weather')
     .then(response =>{
       console.log('api call repsonse :', response )
@@ -82,6 +83,21 @@ class SubmissionContainer extends Component {
       })
     })
     console.groupEnd()
+
+    //get clothes data and icons
+    //console.group('Clothes API')
+    axios
+    .get('https://project3api.herokuapp.com/clothing')
+    .then(response =>{
+      // console.log('api call repsonse :', response )
+      this.setState((prevState) => {
+        // console.table(response.data)
+        return { clothing : response.data }
+      })
+    })
+    // console.groupEnd()
+
+
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -96,6 +112,7 @@ class SubmissionContainer extends Component {
       })
     }
     }
+
   //Updates currentForm State on Click
 
   updateCurrentForm = (type, name) => {
@@ -115,11 +132,11 @@ class SubmissionContainer extends Component {
     formCopy[field] = value
     console.log(formCopy)
     this.setState((prevState) => {
-      return {currentForm: formCopy} 
+      return {currentForm: formCopy}
     })
   }
-  
-  //Handles Submission 
+
+  //Handles Submission
 
   handleForcedUpdate = () => {
     this.forceUpdate
@@ -151,37 +168,37 @@ class SubmissionContainer extends Component {
     //let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
     //formCopy.name = nameSub
     //formCopy.why = whySub
-    
+
     this.setState((prevState) => {
-      return { 
+      return {
         updateToggle: false,
         formToggle: false,
-        //currentForm: formCopy 
+        //currentForm: formCopy
         }
     }, this.submitFormData())
   }
 
 
-  //Handles Updating Input 
+  //Handles Updating Input
    handleSubmissionUpdate = (nameSub, whySub) => {
      //let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
      //formCopy.name = nameSub
      //formCopy.why = whySub
-     //console.table(formCopy) 
+     //console.table(formCopy)
      this.setState((prevState) => {
-       return { 
+       return {
          updateToggle: false,
          formToggle: false,
-         //currentForm: formCopy 
+         //currentForm: formCopy
        }
      }, this.updateFormData())
-    }   
-    
+    }
+
 
   render(){
     return (
       <div className='submission-container'>
-        {this.state.formToggle? 
+        {this.state.formToggle?
           <SubmissionForm
             update={this.state.updateToggle}
             name={this.state.currentForm.name}
@@ -198,7 +215,7 @@ class SubmissionContainer extends Component {
             forceUpdate={this.handleForceUpdate}
            />
            :
-           <SubmissionList 
+           <SubmissionList
             inputs={this.state.inputs}
             toggleForm={this.toggleForm}
             handleUpdate={this.handleUpdate}

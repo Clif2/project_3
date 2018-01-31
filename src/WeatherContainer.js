@@ -8,28 +8,30 @@ import WeatherList from './components/WeatherList/WeatherList'
 import WeatherView from './components/WeatherView/WeatherView'
 
 
-let testWeathers = [
-  { name:'Sunny',
-    imgURL:'https://tinyurl.com/yal89jos',
-    clothes: [{
-      name: 'Sunglasses',
-      imgURL: 'https://tinyurl.com/y9gvv5l6'
-    }] },
-  { name:'Cold',
-    imgURL:'https://tinyurl.com/ybqbjvmv',
-    clothes: [{name:'Hat', imgURL:'https://tinyurl.com/ydxohys4'},
-              {name:'Scarf', imgURL:'https://tinyurl.com/yb7y3ge3'}] }
-]
+// let testWeathers = [
+//   { name:'Sunny',
+//     imgURL:'https://tinyurl.com/yal89jos',
+//     clothes: [{
+//       name: 'Sunglasses',
+//       imgURL: 'https://tinyurl.com/y9gvv5l6'
+//     }] },
+//   { name:'Cold',
+//     imgURL:'https://tinyurl.com/ybqbjvmv',
+//     clothes: [{name:'Hat', imgURL:'https://tinyurl.com/ydxohys4'},
+//               {name:'Scarf', imgURL:'https://tinyurl.com/yb7y3ge3'}] }
+// ]
 
 
 class WeatherContainer extends Component {
   state = {
     weathers : [],
     weatherListToggle: true,
-    currentWeather: { name:'Cold',
-      imgURL:'https://tinyurl.com/ybqbjvmv',
-      clothes: [{name:'Hat', imgURL:'https://tinyurl.com/ydxohys4'},
-                {name:'Scarf', imgURL:'https://tinyurl.com/yb7y3ge3'}] }
+    currentWeather: {}
+
+    // { name:'Cold',
+    //   imgURL:'https://tinyurl.com/ybqbjvmv',
+    //   clothes: [{name:'Hat', imgURL:'https://tinyurl.com/ydxohys4'},
+    //             {name:'Scarf', imgURL:'https://tinyurl.com/yb7y3ge3'}] }
   }
 
   //Toggles whether or not the form component is showing
@@ -40,16 +42,15 @@ class WeatherContainer extends Component {
 
 // when you click on Weather Button in WeatherList
   handleUpdate = (type, name) => {
-    //START HERE
   axios
   .get('https://project3api.herokuapp.com/weather/' + name)
   .then(response => {
-    this.setState((prevState) => { 
+    this.setState((prevState) => {
       return{
       weatherListToggle: false,
       currentWeather: response.data} })
   })
-      //later this will do an api call to fill in the weather info  
+      //later this will do an api call to fill in the weather info
   }
 
   componentDidMount(){
