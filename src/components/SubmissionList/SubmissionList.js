@@ -16,7 +16,7 @@ const oddStyle = {
 const SubmissionList = props => {
   let inputs = props.inputs.map( (input, index)=>
       {
-        let style = ''
+        let style = {}
         if(index%2) {style=evenStyle}
         else {style=oddStyle}
         return ( <SubmissionItem key={index}

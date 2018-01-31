@@ -48,22 +48,19 @@ class SubmissionContainer extends Component {
     formToggle: true,
     updateToggle: false,
     currentID: '',
-    icons: {
-      weather: [
-        {name:'Sun', url:'https://tinyurl.com/yal89jos', type:'weather'},
-        {name:'Cold', url:'https://tinyurl.com/ybqbjvmv', type:'weather' }
-      ],
 
-      clothing: [
-        {name:'Hat', url:'https://tinyurl.com/ydxohys4', type:'clothing'},
-        {name:'Scarf', url:'https://tinyurl.com/yb7y3ge3', type:'clothing' }
-      ]
-    },
+
+    weather: [],
+    clothing: [
+        {name:'Hat', imgURL:'https://tinyurl.com/ydxohys4', type:'clothing'},
+        {name:'Scarf', imgURL:'https://tinyurl.com/yb7y3ge3', type:'clothing' }
+    ],
+
 
     currentForm: {
       weather: '',
-      clothing: '', 
-      name: '', 
+      clothing: '',
+      name: '',
       why: ''
     }
   }
@@ -89,18 +86,23 @@ class SubmissionContainer extends Component {
   // FUNCTIONS TO HANDLE FORM SUBMISSION
 
   componentDidMount(){
-    axios 
+    axios
     .get('https://project3api.herokuapp.com/weather')
-    .then(response =>{
-    this.setState(prevState => ({icons: {weather: response.data,
-                                        clothing: []}}))
+    .then(response => {
+      let weatherCopy = JSON.parse(JSON.stringify(this.state.weather))
+      console.log(weatherCopy)
+      weatherCopy = response.data
+      this.setState((prevState) => {
+        console.log(weatherCopy)
+        return { weather : weatherCopy }
+      })
     })
     //make axios call to project3_API
     // this.setState({inputs: testInputs})
   }
 
   //Updates currentForm State on Click
- 
+
   updateCurrentForm = (type, name) => {
     //copying current state and make changes,
     //basics of idea found at www.fourm.freecodecamp.org...
@@ -117,15 +119,15 @@ class SubmissionContainer extends Component {
 //      currntForm: { e.target.type: e.target.name }
  //   })
  // }
-  
-  //Handles Submission 
+
+  //Handles Submission
 
   handleSubmission = (nameSub, whySub) => {
     let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
     formCopy.name = nameSub
     formCopy.why = whySub
     this.setState((prevState) => {
-      return { 
+      return {
         updateToggle: false,
         formToggle: false,
         currentForm: formCopy }
@@ -140,8 +142,8 @@ class SubmissionContainer extends Component {
                                     name={this.state.currentForm.name}
                                     why={this.state.currentForm.why}
                                     updateCurrentForm={this.updateCurrentForm}
-                                    clothingIcons={this.state.icons.clothing}
-                                    weatherIcons={this.state.icons.weather}
+                                    clothingIcons={this.state.clothing}
+                                    weatherIcons={this.state.weather}
                                 />
                                 :
                                 <SubmissionList inputs={this.state.inputs}
