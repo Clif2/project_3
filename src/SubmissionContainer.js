@@ -39,9 +39,9 @@ class SubmissionContainer extends Component {
 
 }
 
-	// toggleUpdate = () => {
-	// 	this.setState({ updateToggle: !this.state.updateToggle })
-	// }
+	toggleUpdate = () => {
+		this.setState({ updateToggle: !this.state.updateToggle })
+	}
 
 	// when you click on Update Button in SubmissionList
 	handleUpdate = id => {
@@ -93,27 +93,6 @@ class SubmissionContainer extends Component {
 		// console.groupEnd()
 	}
 
-	// componentWillUpdate(prevProps, prevState) {
-	// 	if (!this.state.formToggle)
-	// 	{
-	// 		console.log('getting data');
-	// 		getSubmittedForms().then(data => {
-	// 				this.setState(prevState => {
-	// 					console.log('getSumittedForms: ', data)
-	// 					return { inputs: data }
-	// 				})
-	// 		})
-	// 	}
-		// console.log('checking', prevState.inputs.length, this.state.inputs.length)
-		// if (prevState.inputs.length !== this.state.inputs.length) {
-		// 	getSubmittedForms().then(data => {
-		// 		this.setState(prevState => {
-		// 			console.log('getSumittedForms: ', data)
-		// 			return { inputs: data }
-		// 		})
-		// 	})
-		// }
-	//}
 
 	//Updates currentForm State on Click
 
@@ -140,10 +119,7 @@ class SubmissionContainer extends Component {
 
 	//Handles Submission
 
-	// handleForcedUpdate = () => {
-	// 	this.forceUpdate
-	// }
-
+//FIX --i dont think these functions are necessary
 	submitFormData = () => {
 		// console.log('Submit Form Data Fired')
 		// console.table(this.state.currentForm)
@@ -158,11 +134,29 @@ class SubmissionContainer extends Component {
 
 	handleDelete = () => {
 		// console.log('DELETED :', this.state.currentID)
-		removeSubmission(this.state.currentID)
-		this.setState({
-			currentID: '',
-			formToggle: false
-		})
+		removeSubmission(this.state.currentID).then(()=>{
+			console.log('createdSubmission')
+			getSubmittedForms().then(inputs => {
+				console.log('gotsubmittedform')
+				console.log(inputs);
+				this.setState(prevState => {
+					return {
+						updateToggle: false,
+						formToggle: false,
+						inputs: inputs
+					}//end return
+				})//end setState
+
+			})//end then getSumittedForms
+
+
+
+			// this.setState({
+			// 	currentID: '',
+			// 	formToggle: false,
+			// 	updateToggle: false
+			// })
+		})//end removeSubmission
 	}
 
 	handleSubmission = (nameSub, whySub) => {
@@ -171,14 +165,17 @@ class SubmissionContainer extends Component {
 		// formCopy.name = nameSub
 		// formCopy.why = whySub
 
-//should createSubmission
-//then get the new list of inputs from the db
-//then set state
-console.log('handleSubmission');
+/*
+should createSubmission
+then get the new list of inputs from the db
+then set state
+*/
+
 		 createSubmission(this.state.currentForm).then(()=>{
 			 console.log('createdSubmission')
 			 getSubmittedForms().then(inputs => {
 				 console.log('gotsubmittedform')
+				 console.log(inputs);
 				 this.setState(prevState => {
 					 return {
 						 updateToggle: false,
@@ -199,13 +196,31 @@ console.log('handleSubmission');
 		//formCopy.name = nameSub
 		//formCopy.why = whySub
 		//console.table(formCopy)
-		this.setState(prevState => {
-			return {
-				updateToggle: false,
-				formToggle: false
-				//currentForm: formCopy
-			}
-		}, this.updateFormData())
+		// this.setState(prevState => {
+		// 	return {
+		// 		updateToggle: false,
+		// 		formToggle: false
+		// 		//currentForm: formCopy
+		// 	}
+		// }, this.updateFormData())
+
+		updateSubmission(this.state.currentID, this.state.currentForm)
+			.then(()=>{
+				console.log('updatedSubmission')
+				getSubmittedForms().then(inputs => {
+					console.log('gotsubmittedform')
+					this.setState(prevState => {
+						return {
+							updateToggle: false,
+							formToggle: false,
+							inputs: inputs
+						}//end return
+					})//end setState
+
+				})//end then getSumittedForms
+
+			})//end then updateSubmission
+
 	}
 
 	render() {
