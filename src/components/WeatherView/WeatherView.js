@@ -22,7 +22,7 @@ const WeatherView = props => {
   console.log(props);
   let clothing = props.weather.clothes.map( (item, index)=>
       {
-        let theIcon = { url: item.imgURL,
+        let theIcon = { imgURL: item.imgURL,
                         name: item.name,
                         type: 'clothing',
                         style: iconStyle}
@@ -30,7 +30,7 @@ const WeatherView = props => {
                         icon={theIcon}  />)
       })
 
-  let weatherInfo = { url: props.weather.imgURL,
+  let weatherInfo = { imgURL: props.weather.imgURL,
                       name: props.weather.name,
                       type: 'weather',
                       style: largeIconStyle }

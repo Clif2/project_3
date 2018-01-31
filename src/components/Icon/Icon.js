@@ -1,12 +1,16 @@
 import React from 'react'
 
 // functional component that returns an icon
+const iconStyle = {
+  height: '150px',
+  width: '150px'
+}
 
 const Icon = ({icon}) => {
 
   return (
       <img
-        style={icon.style}
+        style={iconStyle}
         src={icon.imgURL}
         alt={icon.name}
       />
