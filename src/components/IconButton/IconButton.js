@@ -52,7 +52,17 @@ import Icon from '../Icon/Icon'
 
   render () {
     return (
-      <div className={css(styles.icon)} onClick={this.onClick}>
+      <div
+      /*className={this.state.selected
+                ?
+                {css(styles.iconSelected)}
+                :
+                {css(styles.icon)}
+                }
+      */
+      className={css(styles.icon)}
+      onClick={this.onClick}>
+
         <Icon icon={this.icon}/>
       </div>
       )
@@ -70,10 +80,14 @@ export const styles = StyleSheet.create({
     borderRadius: '9px',
     textDecoration: 'none',
     display: 'inline-block'
+  },
+
+  iconSelected: {
+    padding: 0,
+    border: '3px solid red',
+    margin: `${spaceing.s2}`,
+    borderRadius: '9px',
+    textDecoration: 'none',
+    display: 'inline-block'
   }
-
-  //iconSelected: {
-
-
-  //}
 })
