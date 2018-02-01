@@ -21,6 +21,9 @@ class App extends Component {
         <Nav/>
         <Switch>
             <Route path={`/submissions`} component={SubmissionContainer}/>
+            {/* <Route path={`/submissions`} render={() => (
+              <SubmissionContainer />
+            /> */}
             <Route path={`/weather`} component={WeatherContainer}/>
             <Route path={'/about'} component={About}/>
 
