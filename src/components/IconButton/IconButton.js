@@ -29,24 +29,7 @@ import Icon from '../Icon/Icon'
  }
 
  onClick = e => {
-   let toggle  = !this.state.selected
-   if (this.type === 'clothing')
-   {
-     if( this.state.selected)
-     {
-       this.updateCurrentForm(this.type, this.icon.name, this.
-                         icon.imgURL)
-     }
-     else{
-       this.updateCurrentForm(this.type, this.icon.name, imgURL='')
-     }
-   }
-   else  //assumes the only other case is 'weather'
-   {
-     this.updateCurrentForm(this.type, this.icon.name, this.
-                       icon.imgURL)
-   }
-   this.setState((prevState) => ({selected: toggle}))
+
   }
 
 
