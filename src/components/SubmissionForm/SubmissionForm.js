@@ -31,7 +31,6 @@ const SubmissionForm = (props) => {
   }
 
 
- * <<<<<<< HEAD
   let weather = []
   let clothes = []
 

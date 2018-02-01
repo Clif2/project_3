@@ -64,19 +64,13 @@ this.setState((prevState) => ({selected: !prevState.selected}))
 
   render () {
     return (
-<<<<<<< HEAD
-      <div
-      className={css( this.state.selected ? styles.iconSelected : styles.icon)}
-      onClick={this.onClick}>
 
-=======
       <div 
       className={css( this.state.selected ? styles.iconSelected : styles.iconInactive, styles.icon)} 
       onClick={this.onClick}>
         
-      {this.props.form != null ? <WeatherFormIcon icon={this.icon} />
+      {this.props.isRadio != null ? <WeatherFormIcon icon={this.icon} />
         :
->>>>>>> CssStart
         <Icon icon={this.icon}/>
       }
 
@@ -133,12 +127,7 @@ export const styles = StyleSheet.create({
 		animationTimingFunction:'ease', 
 		animationDirection:'alternate', 
     padding: 0,
-<<<<<<< HEAD
-    border: '3px solid red',
-    margin: `${spaceing.s2}`,
-=======
     boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
->>>>>>> CssStart
     borderRadius: '9px',
     margin: `${spaceing.s2}`,
     display: 'inline-block'
