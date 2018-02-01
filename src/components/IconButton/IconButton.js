@@ -26,7 +26,6 @@ class IconButton extends Component {
    //if type is clothing and it is toggledOn send imgURL
    //else send imgURL = ''
    let toggle  = !this.state.selected
-   console.log('in onClick=>'+toggle);
 
   if (this.type === 'clothes')
   {
@@ -42,25 +41,13 @@ class IconButton extends Component {
   }
   else  //assumes the only other case is 'weather'
   {
-    if(toggle){
-      //update current form with this choice
-      this.updateCurrentForm(this.type, this.icon.name,
-                              this.icon.imgURL)
-     //FIX and unselect any other selected choice
-     //maybe a query select all on the class and then change the style?
-    }
-    else{
-      //we should remove this selection from currentform
-      this.updateCurrentForm(this.type, this.icon.name, '')
-
-    }
+    this.updateCurrentForm(this.type, this.icon.name,
+                            this.icon.imgURL)
   }
 
 this.setState((prevState) => ({selected: !prevState.selected}))
 
 }//end onClick
-
-
 
   render () {
     return (
@@ -68,12 +55,10 @@ this.setState((prevState) => ({selected: !prevState.selected}))
       className={css( this.state.selected ? styles.iconSelected : styles.iconInactive, styles.icon)}
       onClick={this.onClick}>
 
-      {this.props.isRadio != null ?
-        <WeatherFormIcon icon={this.icon} />
+      {this.props.isRadio != null ? <WeatherFormIcon icon={this.icon} />
         :
         <Icon icon={this.icon}/>
       }
-
       </div>
       )
   }
@@ -127,7 +112,9 @@ export const styles = StyleSheet.create({
 		animationTimingFunction:'ease',
 		animationDirection:'alternate',
     padding: 0,
-    boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
+    boxShadow: '0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(23, 105, 237)',
+
+    // boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
     borderRadius: '9px',
     margin: `${spaceing.s2}`,
     display: 'inline-block'
