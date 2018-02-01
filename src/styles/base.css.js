@@ -23,7 +23,7 @@ export const cabinFont = {
   fontFamily: "'Cabin Sketch', cursive;",
   fontStyle: "normal",
   fontWeight: "normal",
-  src: "url('https://fonts.googleapis.com/css?family=Fredericka+the+Great') format('frederickaTheGreat')"
+  src: "url('https://fonts.googleapis.com/css?family=Fredericka+the+Great') format('woff2')"
 };
 
 
@@ -59,3 +59,5 @@ function perfectFourth (spacingFactor, exp) {
  return Math.round(spacingFactor * Math.pow(1.333, exp)) 
   
 }
+
+
