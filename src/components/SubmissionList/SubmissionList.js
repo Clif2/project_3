@@ -34,7 +34,7 @@ const SubmissionList = props => {
   return (
     <div>
      <h1>What's Your Weather Ware?</h1>
-     <button onClick={props.toggleForm}>Add Your Own Idea!</button>
+     <button type='button' onClick={props.toggleForm}>Add Your Own Idea!</button>
       {inputs}
     </div>
   )

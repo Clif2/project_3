@@ -35,7 +35,7 @@ const SubmissionItem = props => {
       </div>
       <p>because..."{props.input.why}"</p>
 
-      <button onClick={()=>{props.handleUpdate(props.input._id)}}>Edit</button>
+      <button type='button' onClick={()=>{props.handleUpdate(props.input._id)}}>Edit</button>
     </div>
 
   )

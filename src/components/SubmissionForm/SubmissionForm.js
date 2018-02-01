@@ -122,7 +122,6 @@ const SubmissionForm = (props) => {
             <button onClick={deleteSubmission} name='delete'>Delete</button>
           </form>
 
-
         }
       </div>
 )//end return

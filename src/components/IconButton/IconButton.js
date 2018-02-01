@@ -47,12 +47,12 @@ class IconButton extends Component {
       this.updateCurrentForm(this.type, this.icon.name,
                               this.icon.imgURL)
      //FIX and unselect any other selected choice
+     //maybe a query select all on the class and then change the style?
     }
     else{
       //we should remove this selection from currentform
-      console.log('untoggle weather');
       this.updateCurrentForm(this.type, this.icon.name, '')
-      //maybe a query select all on the class and then change the style?
+
     }
   }
 
@@ -67,7 +67,6 @@ this.setState((prevState) => ({selected: !prevState.selected}))
       <div
       className={css( this.state.selected ? styles.iconSelected : styles.icon)}
       onClick={this.onClick}>
-
         <Icon icon={this.icon}/>
       </div>
       )
@@ -75,7 +74,6 @@ this.setState((prevState) => ({selected: !prevState.selected}))
 }
 
 export default IconButton
-
 
 export const styles = StyleSheet.create({
   icon: {
