@@ -36,3 +36,8 @@ From the About section
 * wwww.burst.shopify.com  (for images)
 * Visual Design System Reference               https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32
 * https://zellwk.com/blog/why-vertical-rhythms/
+
+#Member Contributions
+* Cliff //Write what you did here
+* Gwen  //Write what you did here
+* Rindy //Write what you did here

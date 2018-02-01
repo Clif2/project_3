@@ -12,6 +12,20 @@
 
 
 // TYPOGRAPHY 
+export const greatFont = {
+  fontFamily: "'Fredericka the Great', cursive;",
+  fontStyle: "normal",
+  fontWeight: "normal",
+  src: "url('https://fonts.googleapis.com/css?family=Fredericka+the+Great') format('woff2')"
+};
+
+export const cabinFont = {
+  fontFamily: "'Cabin Sketch', cursive;",
+  fontStyle: "normal",
+  fontWeight: "normal",
+  src: "url('https://fonts.googleapis.com/css?family=Fredericka+the+Great') format('frederickaTheGreat')"
+};
+
 
 export const fontSize = {
 
