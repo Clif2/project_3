@@ -64,15 +64,13 @@ this.setState((prevState) => ({selected: !prevState.selected}))
 
   render () {
     return (
-
-=======
       <div
       className={css( this.state.selected ? styles.iconSelected : styles.iconInactive, styles.icon)}
       onClick={this.onClick}>
 
-      {this.props.form != null ? <WeatherFormIcon icon={this.icon} />
+      {this.props.isRadio != null ?
+        <WeatherFormIcon icon={this.icon} />
         :
->>>>>>> 3e73956c5fabe03bd331feebf8272d19bcecb490
         <Icon icon={this.icon}/>
       }
 
