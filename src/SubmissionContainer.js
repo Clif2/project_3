@@ -98,7 +98,12 @@ class SubmissionContainer extends Component {
 		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
 		//console.log('updateCurrentFrom copy: ', formCopy)
 		if(type === 'weather'){
-			formCopy[type] = name
+			if (imgURL)
+			{
+				formCopy[type] = name
+			}
+			else {
+				formCopy.weather = ''}
 		}
 		else if(type === 'clothes'){
 			// console.log('the imgURL =>' +imgURL);
@@ -226,18 +231,7 @@ then set state
 
 	//Handles Updating Input
 	handleSubmissionUpdate = () => {
-		//let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
-		//formCopy.name = nameSub
-		//formCopy.why = whySub
-		//console.table(formCopy)
-		// this.setState(prevState => {
-		// 	return {
-		// 		updateToggle: false,
-		// 		formToggle: false
-		// 		//currentForm: formCopy
-		// 	}
-		// }, this.updateFormData())
-
+		if (!this.formValidator() )return
 		updateSubmission(this.state.currentID, this.state.currentForm)
 			.then(()=>{
 				// console.log('updatedSubmission')

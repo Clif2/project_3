@@ -42,8 +42,18 @@ class IconButton extends Component {
   }
   else  //assumes the only other case is 'weather'
   {
-    this.updateCurrentForm(this.type, this.icon.name, this.
-                      icon.imgURL)
+    if(toggle){
+      //update current form with this choice
+      this.updateCurrentForm(this.type, this.icon.name,
+                              this.icon.imgURL)
+     //FIX and unselect any other selected choice
+    }
+    else{
+      //we should remove this selection from currentform
+      console.log('untoggle weather');
+      this.updateCurrentForm(this.type, this.icon.name, '')
+      //maybe a query select all on the class and then change the style?
+    }
   }
 
 this.setState((prevState) => ({selected: !prevState.selected}))

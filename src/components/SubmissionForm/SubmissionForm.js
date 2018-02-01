@@ -123,7 +123,7 @@ const SubmissionForm = (props) => {
           </form>
 
 
-        }//end if
+        }
       </div>
 )//end return
 

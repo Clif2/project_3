@@ -20,14 +20,14 @@ class App extends Component {
       <div className="App">
         <Nav/>
         <Switch>
-            <Route path={`/submissions`} component={SubmissionContainer}/>
-            {/* <Route path={`/submissions`} render={() => (
-              <SubmissionContainer />
-            /> */}
+            {/* <Route path={`/submissions`} component={SubmissionContainer}/> */}
+            <Route path={`/submissions`} render={() => (
+              <SubmissionContainer />)}
+            />
             <Route path={`/weather`} component={WeatherContainer}/>
             <Route path={'/about'} component={About}/>
 
-            <Route path='/' render={()=><Redirect to='/submissions'/>}/>
+            <Route path='/' render={()=><Redirect to='/weather'/>}/>
             <Route path='*' component={NotFound}/>
         </Switch>
      </div>
