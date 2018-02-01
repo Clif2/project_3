@@ -41,8 +41,16 @@ class IconButton extends Component {
   }
   else  //assumes the only other case is 'weather'
   {
-    this.updateCurrentForm(this.type, this.icon.name,
-                            this.icon.imgURL)
+    //FIX I think  i can make this more dry and take it out completely
+    if( toggle )
+    {
+      this.updateCurrentForm(this.type, this.icon.name, this.
+                        icon.imgURL)
+    }
+    else{
+      console.log('delete weather item');
+      this.updateCurrentForm(this.type, this.icon.name, '')
+    }
   }
 
 this.setState((prevState) => ({selected: !prevState.selected}))
@@ -55,9 +63,14 @@ this.setState((prevState) => ({selected: !prevState.selected}))
       className={css( this.state.selected ? styles.iconSelected : styles.iconInactive, styles.icon)}
       onClick={this.onClick}>
 
-      {this.props.isRadio != null ? <WeatherFormIcon icon={this.icon} />
+      {this.props.isRadio != null ?
+        <div>
+          <WeatherFormIcon icon={this.icon} />
+        </div>
         :
-        <Icon icon={this.icon}/>
+        <div>
+          <Icon icon={this.icon}/>
+        </div>
       }
       </div>
       )
@@ -112,7 +125,7 @@ export const styles = StyleSheet.create({
 		animationTimingFunction:'ease',
 		animationDirection:'alternate',
     padding: 0,
-    boxShadow: '0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(23, 105, 237)',
+    boxShadow: '0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(222, 128, 237)',
 
     // boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
     borderRadius: '9px',
