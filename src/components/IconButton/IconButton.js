@@ -7,7 +7,7 @@ import Icon from '../Icon/Icon'
 const IconButton = ({updateCurrentForm, icon, type}) => {
 
   const onClick = e => {
-    updateCurrentForm(type, icon.name)
+    updateCurrentForm(type, icon.name, icon.imgURL)
   }
 
   return (

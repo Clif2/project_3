@@ -50,7 +50,7 @@ const SubmissionForm = (props) => {
         <IconButton
           updateCurrentForm={props.updateCurrentForm}
           icon={item}
-          type='clothing'
+          type='clothes'
           key={idx}
         />
       )}

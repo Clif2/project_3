@@ -27,7 +27,7 @@ class SubmissionContainer extends Component {
 
 		currentForm: {
 			weather: '',
-			clothing: '',
+			clothes: [],
 			name: '',
 			why: ''
 		}
@@ -95,13 +95,20 @@ class SubmissionContainer extends Component {
 
 	//Updates currentForm State on Click
 
-	updateCurrentForm = (type, name) => {
+	updateCurrentForm = (type, name, imgURL) => {
 		//copying current state and make changes,
 		//basics of idea found at www.fourm.freecodecamp.org...
 		//.../t/reactjs-using-state-to-update-single-property-on-an-object
 		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
 		console.log('updateCurrentFrom copy: ', formCopy)
-		formCopy[type] = name
+		if(type === 'weather'){
+			formCopy[type] = name
+		}
+		else if(type === 'clothes'){
+			formCopy.clothes.push({ name: name,
+														imgURL: imgURL})
+		}
+
 		this.setState(prevState => {
 			return { currentForm: formCopy }
 		})
@@ -110,6 +117,7 @@ class SubmissionContainer extends Component {
 	updateCurrentFromFields = (field, value) => {
 		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
 		formCopy[field] = value
+		console.log('updateCurrentFromFields');
 		console.log(formCopy)
 		this.setState(prevState => {
 			return { currentForm: formCopy }
@@ -143,7 +151,12 @@ class SubmissionContainer extends Component {
 						formToggle: false,
 						inputs: inputs,
 						currentID: '',
-						currentForm: {}
+						currentForm: {
+							weather: '',
+							clothes: [],
+							name: '',
+							why: ''
+						}
 					}//end return
 				})//end setState
 
@@ -182,7 +195,12 @@ then set state
 						 formToggle: false,
 						 inputs: inputs,
 						 currentID: '',
- 						currentForm: {}
+ 						currentForm: {
+							weather: '',
+							clothes: [],
+							name: '',
+							why: ''
+						}
 					 }//end return
 				 })//end setState
 
@@ -217,7 +235,12 @@ then set state
 							formToggle: false,
 							inputs: inputs,
 							currentID: '',
-							currentForm: {}
+							currentForm: {
+								weather: '',
+								clothes: [],
+								name: '',
+								why: ''
+							}
 						}//end return
 					})//end setState
 
@@ -243,7 +266,7 @@ then set state
 						handleDelete={this.handleDelete}
 						updateCurrentForm={this.updateCurrentForm}
 						updateFields={this.updateCurrentFromFields}
-						forceUpdate={this.handleForceUpdate}
+						// forceUpdate={this.handleForceUpdate}
 					/>
 				) : (
 					<SubmissionList
