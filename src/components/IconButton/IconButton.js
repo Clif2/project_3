@@ -25,25 +25,21 @@ import Icon from '../Icon/Icon'
 
 
  componentDidMount () {
-   console.log(this.props)
  }
 
  onClick = e => {
-
+   this.updateCurrentForm(this.type, this.icon.name, this.
+                     icon.imgURL)
+   this.setState((prevState) => ({selected: !prevState.selected}))
+   console.log(this.style)
   }
+
 
 
   render () {
     return (
       <div
-      /*className={this.state.selected
-                ?
-                {css(styles.iconSelected)}
-                :
-                {css(styles.icon)}
-                }
-      */
-      className={css(styles.icon)}
+      className={css( this.state.selected ? styles.iconSelected : styles.icon)}
       onClick={this.onClick}>
 
         <Icon icon={this.icon}/>
