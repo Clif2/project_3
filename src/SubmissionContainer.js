@@ -18,7 +18,7 @@ import {
 class SubmissionContainer extends Component {
 	state = {
 		inputs: [],
-		formToggle: true,
+		formToggle: false,
 		updateToggle: false,
 		currentID: '',
 
@@ -45,18 +45,17 @@ class SubmissionContainer extends Component {
 
 	// when you click on Update Button in SubmissionList
 	handleUpdate = id => {
-		console.log('id=> ' + id)
-		console.log('currrent inputs: ', this.state.inputs)
-		let submission = this.state.inputs.filter(
-			submissions => (submissions._id = id)
-		)
-		console.log(submission)
-		this.setState({
-			formToggle: true,
-			updateToggle: true,
-			currentID: id,
-			currentForm: submission[0]
-		})
+			axios.get('https://project3api.herokuapp.com/input/'+id)
+					 .then(response => {
+							this.setState(prevState => {
+								return {
+									formToggle: true,
+									updateToggle: true,
+									currentID: id,
+									currentForm: response.data
+								}
+							})
+					})
 	}
 
 	// FUNCTIONS TO HANDLE FORM SUBMISSION
@@ -65,7 +64,7 @@ class SubmissionContainer extends Component {
 		//get all inputs
 		getSubmittedForms().then(data => {
 			this.setState(prevState => {
-				// console.log('getSumittedForms: ', data)
+				 console.log('getSumittedForms: ', data)
 				return { inputs: data }
 			})
 		})
@@ -135,15 +134,16 @@ class SubmissionContainer extends Component {
 	handleDelete = () => {
 		// console.log('DELETED :', this.state.currentID)
 		removeSubmission(this.state.currentID).then(()=>{
-			console.log('createdSubmission')
 			getSubmittedForms().then(inputs => {
-				console.log('gotsubmittedform')
-				console.log(inputs);
+				// console.log('gotsubmittedform')
+				// console.log(inputs);
 				this.setState(prevState => {
 					return {
 						updateToggle: false,
 						formToggle: false,
-						inputs: inputs
+						inputs: inputs,
+						currentID: '',
+						currentForm: {}
 					}//end return
 				})//end setState
 
@@ -180,7 +180,9 @@ then set state
 					 return {
 						 updateToggle: false,
 						 formToggle: false,
-						 inputs: inputs
+						 inputs: inputs,
+						 currentID: '',
+ 						currentForm: {}
 					 }//end return
 				 })//end setState
 
@@ -213,7 +215,9 @@ then set state
 						return {
 							updateToggle: false,
 							formToggle: false,
-							inputs: inputs
+							inputs: inputs,
+							currentID: '',
+							currentForm: {}
 						}//end return
 					})//end setState
 
@@ -229,6 +233,7 @@ then set state
 				{this.state.formToggle ? (
 					<SubmissionForm
 						update={this.state.updateToggle}
+						formData={this.state.currentForm}
 						name={this.state.currentForm.name}
 						why={this.state.currentForm.why}
 						clothingIcons={this.state.clothing}

@@ -16,20 +16,35 @@ const iconStyle = {
 
 const SubmissionItem = props => {
       let clothing = props.input.clothes.map( (item, index) => {
-          let theIcon = { url: item.imgURL,
+          console.log('map=>'+item);
+          let theIcon = { imgURL: item.imgURL,
                           name:item.name,
                           type:'clothing',
                           style: iconStyle}
-                      return ( <Icon key={index}
+          return ( <Icon key={index}
                                     icon={theIcon}
                                     />)
-                   })//end map
+                   }) //end map
+
+
+                   // let weathers = props.weathers.map( (item, index)=>
+                   //     {
+                   //       let theIcon = { imgURL: item.imgURL,
+                   //                       name: item.name,
+                   //                       type: 'weather',
+                   //                       style: iconStyle}
+                   //       return ( <IconButton     key={index}
+                   //                                updateCurrentForm={props.handleUpdate}
+                   //                                icon={theIcon}/>
+                   //                                )
+                   //     })
 
   return (
 
     <div className='submission-item' style={props.style}>
       <h3>When it's {props.input.weather} {props.input.name} wears:</h3>
       <div className='icon-list'>
+        clothing
         {clothing}
       </div>
       <p>because..."{props.input.why}"</p>

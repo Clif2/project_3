@@ -59,14 +59,18 @@ const SubmissionForm = (props) => {
      {props.update === false?
 
       <form onSubmit={onSubmit}>
-        <input onChange={updateFields} type='text'  name='name'/>
-        <textarea onChange={updateFields} name='why' />
+        <label htmlFor="input-name">Name: </label>
+        <input id="input-name" onChange={updateFields} type='text'  name='name'/>
+        <label htmlFor="input-why">Why is this a good choice?: </label>
+        <textarea id="input-why" onChange={updateFields} name='why' />
         <button type='submit'>Submit</button>
       </form>
       :
       <form onSubmit={onUpdate}>
-        <input onChange={updateFields} type='text' name='name'/>
-        <textarea onChange={updateFields} name='why' />
+        <label htmlFor="input-name"> Name: </label>
+        <input id="input-name" onChange={updateFields} type='text' name='name' value={props.formData.name}/>
+        <label htmlFor="input-why">Why is this a good choice?: </label>
+        <textarea id="input-why" onChange={updateFields} name='why' placeholder={props.formData.why}/>
         <button type='submit'>Update</button>
         <button onClick={deleteSubmission} name='delete'>Delete</button>
       </form>
