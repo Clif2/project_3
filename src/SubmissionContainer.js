@@ -101,6 +101,7 @@ class SubmissionContainer extends Component {
 			formCopy[type] = name
 		}
 		else if(type === 'clothes'){
+			// console.log('the imgURL =>' +imgURL);
 			//if imgURL present then push item on list
 			if (imgURL)
 			{
@@ -108,8 +109,9 @@ class SubmissionContainer extends Component {
 														imgURL: imgURL})
 			}
 			else {
+				// console.log('we are deleting in updateCurrentForm');
 				 //if imgURL not present remove item from clothes array
-				 formCopy.clothes.filter( (item) => {
+				 formCopy.clothes = formCopy.clothes.filter( (item) => {
 				 		return item.name !== name})
 			}
 		}
@@ -122,8 +124,8 @@ class SubmissionContainer extends Component {
 	updateCurrentFromFields = (field, value) => {
 		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
 		formCopy[field] = value
-		console.log('updateCurrentFromFields');
-		console.log(formCopy)
+		// console.log('updateCurrentFromFields');
+		// console.log(formCopy)
 		this.setState(prevState => {
 			return { currentForm: formCopy }
 		})
@@ -223,7 +225,7 @@ then set state
 	}//end handleSubmission
 
 	//Handles Updating Input
-	handleSubmissionUpdate = (nameSub, whySub) => {
+	handleSubmissionUpdate = () => {
 		//let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
 		//formCopy.name = nameSub
 		//formCopy.why = whySub
@@ -238,9 +240,9 @@ then set state
 
 		updateSubmission(this.state.currentID, this.state.currentForm)
 			.then(()=>{
-				console.log('updatedSubmission')
+				// console.log('updatedSubmission')
 				getSubmittedForms().then(inputs => {
-					console.log('gotsubmittedform')
+					// console.log('gotsubmittedform')
 					this.setState(prevState => {
 						return {
 							updateToggle: false,

@@ -5,18 +5,11 @@ import { spaceing } from '../../styles/base.css.js'
 import Icon from '../Icon/Icon'
 
 
-//Gwen--onClick
-//check type
-//if type is clothing and it is toggledOn send imgURL
-//else send imgURL = ''
 
-  // const onClick = e => {
-  //   updateCurrentForm(type, icon.name, icon.imgURL)
-
-  class IconButton extends Component {
+class IconButton extends Component {
 
     state = {
-      selected: false
+      selected: this.props.selected
     }
 
  updateCurrentForm = this.props.updateCurrentForm
@@ -28,11 +21,34 @@ import Icon from '../Icon/Icon'
  }
 
  onClick = e => {
-   this.updateCurrentForm(this.type, this.icon.name, this.
-                     icon.imgURL)
-   this.setState((prevState) => ({selected: !prevState.selected}))
-   console.log(this.style)
+   //onClick
+   //check type
+   //if type is clothing and it is toggledOn send imgURL
+   //else send imgURL = ''
+   let toggle  = !this.state.selected
+   console.log('in onClick=>'+toggle);
+
+  if (this.type === 'clothes')
+  {
+    if( toggle )
+    {
+      this.updateCurrentForm(this.type, this.icon.name, this.
+                        icon.imgURL)
+    }
+    else{
+      console.log('delete clothing item');
+      this.updateCurrentForm(this.type, this.icon.name, '')
+    }
   }
+  else  //assumes the only other case is 'weather'
+  {
+    this.updateCurrentForm(this.type, this.icon.name, this.
+                      icon.imgURL)
+  }
+
+this.setState((prevState) => ({selected: !prevState.selected}))
+
+}//end onClick
 
 
 
