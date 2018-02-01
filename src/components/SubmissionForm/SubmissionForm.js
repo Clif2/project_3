@@ -1,6 +1,7 @@
 import React from 'react'
 
 import IconButton from '../IconButton/IconButton.js'
+import WeatherFormIcon from '../WeatherFormIcon/WeatherFormIcon.js'
 
 const SubmissionForm = (props) => {
 
@@ -38,6 +39,7 @@ const SubmissionForm = (props) => {
     return(
       <IconButton
         updateCurrentForm={props.updateCurrentForm}
+        isRadio='1'
         icon={item}
         type='weather'
         selected= {false}
@@ -64,6 +66,7 @@ const SubmissionForm = (props) => {
       return(
       <IconButton
         updateCurrentForm={props.updateCurrentForm}
+        isRadio='1'
         icon={item}
         type='weather'
         selected={isSelected}
