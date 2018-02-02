@@ -67,7 +67,9 @@ const styles = StyleSheet.create ({
     fontFamily: greatFont.fontFamily, 
     fontSize: fontSize.displayLarge, 
     color: color.white,
-    'margin-top': spaceing.s7
+    width: '960px',
+    'margin': '0 auto',
+    'margin-top': spaceing.s6
   }, 
 
    buttonCall: {
@@ -80,7 +82,7 @@ const styles = StyleSheet.create ({
 	  color: color.white,
 	  'vertical-align': 'middle',
 	  position: 'relative',
-    margin: spaceing.s6,
+    margin: `${spaceing.s6} 0`,
     padding: spaceing.s4,
     
     transition: 'color 0.3s',
@@ -92,9 +94,6 @@ const styles = StyleSheet.create ({
     color: color.white 
    },
 
-   iconStyle: {
-    margin: spaceing.s0,
-   }
  
  }
 

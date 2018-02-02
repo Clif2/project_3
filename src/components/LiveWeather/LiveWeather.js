@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import { color } from '../../styles/base.css.js'
 
 import Icon from '../Icon/Icon'
 
@@ -77,13 +78,14 @@ export default LiveWeather
 export const styles = StyleSheet.create({
 
   liveWeather : {
-    height: '250px',
-    width: '250px',
+    height: '225px',
+    width: '225px',
     color: 'rgb(18, 100, 232)',
     borderStyle: 'solid',
-    borderColor: 'grey',
+    borderColor: color.accent2,
     borderWidth: '1px',
-    borderRadius: '5%'
+    borderRadius: '5%',
+    padding: '20px'
   },
   weatherLabel : {
     color: 'black'

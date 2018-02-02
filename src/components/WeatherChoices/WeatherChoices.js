@@ -37,7 +37,7 @@ class WeatherChoices extends Component {
     let weather = ''
     // console.log('rerendering weather choices');
     if(!this.state.selectedWeather){
-      console.log( 'all icons should be false');
+
       weather = this.props.weather.map((item, idx) =>{
         console.log('everything should be getting deleted');
       return(
@@ -56,7 +56,6 @@ class WeatherChoices extends Component {
     else{
       weather = this.props.weather.map((item, idx) =>{
         let isSelected = false
-        // if (this.props.formData.weather===item.name) {isSelected = true}
         if (this.state.selectedWeather===item.name) {isSelected = true}
 
         return(
