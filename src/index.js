@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'aphrodite-reset'
 import {
   BrowserRouter as Router
 } from "react-router-dom"

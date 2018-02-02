@@ -50,22 +50,20 @@ const styles = StyleSheet.create({
     
   iconStyle: {
     margin: spaceing.s1,
-    display: 'grid',
-    'justify-content': 'space-between',
-    'alight-content': 'center',
-
     
   },
  
 
   card:{
-  padding: spaceing.s3, 
-  background: color.white,
-  boxShadow: '0 72px 82px 81px rgba(0, 0, 0, .07)',
-  borderRadius: '9px',
-  border: '2px solid',
-  'border-color': color.clightgrey
- },
+    display: 'grid',
+    'justify-content': 'space-between',
+    padding: spaceing.s3, 
+    background: color.white,
+    boxShadow: '0 2px 2px 3px rgba(0, 0, 0, .07)',
+    borderRadius: '9px',
+    border: '2px solid',
+    'border-color': color.clightgrey,
+  },
 
   button: {
 	 'min-width': '150px',
@@ -79,31 +77,11 @@ const styles = StyleSheet.create({
 	  position: 'relative',
     margin: spaceing.s1,
     padding: spaceing.s1,
-//    transition: button.transition,
-    ':before, :after': {
-        content: '""',
-        position: 'absolute',
-        backgroundColor: color.primary,
-        borderRadius: '48px',
-      }, 
- //   ':before': button.before,
- //   ':after': button.after,
-
   
   ':hover': {
      backgroundColor: color.clightgrey,
      color: color.secondary 
-   },
-  ':hover::before': {
-     opacity: 1
+    },
    },
  
-  ':hover::after': {
-   'background-color': color.clightgrey 
-   },
-  
-   ':hover::after, :hover::before': {
-   transform: 'scale3d(1, 1, 1)'    
-   }
- }  //button end  
 })  //styles end                               

@@ -2,6 +2,8 @@
 GL
 */
 import React from 'react'
+import { StyleSheet, css } from 'aphrodite/no-important'
+import { spaceing, color } from '../../styles/base.css.js'
 
 import IconButton from '../IconButton/IconButton'
 
@@ -32,7 +34,7 @@ const WeatherList = props => {
 
 
   return (
-    <div>
+    <div className={css(styles.card)}>
      <h1>Choose Your Weather</h1>
      {weathers}
     </div>
@@ -41,3 +43,46 @@ const WeatherList = props => {
 }
 
 export default WeatherList
+
+const styles = StyleSheet.create({
+ 
+    
+  iconStyle: {
+    margin: spaceing.s1,
+    
+  },
+ 
+
+  card:{
+    display: 'grid',
+    'justify-content': 'space-between',
+    padding: spaceing.s3, 
+    background: color.white,
+    boxShadow: '0 2px 2px 3px rgba(0, 0, 0, .07)',
+    borderRadius: '9px',
+    border: '2px solid',
+    'border-color': color.clightgrey,
+  },
+
+  button: {
+	 'min-width': '150px',
+	 'max-width': '250px',
+	  border: '3px solid',
+    borderColor: color.secondary,
+    borderRadius: '48px',
+    backgroundColor: color.primary,
+	  color: color.cdarkgrey,
+	  'vertical-align': 'middle',
+	  position: 'relative',
+    margin: spaceing.s1,
+    padding: spaceing.s1,
+  
+  ':hover': {
+     backgroundColor: color.clightgrey,
+     color: color.secondary 
+    },
+   },
+ 
+})  //styles end  
+
+
