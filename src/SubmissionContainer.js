@@ -64,21 +64,17 @@ class SubmissionContainer extends Component {
 		//get all inputs
 		getSubmittedForms().then(data => {
 			this.setState(prevState => {
-				 console.log('getSumittedForms: ', data)
 				return { inputs: data }
 			})
 		})
 
 		//get weather data and icons
-		// console.group('Weather API')
-		axios.get('https://project3api.herokuapp.com/weather').then(response => {
-			// console.log('api call repsonse :', response)
-			this.setState(prevState => {
-				// console.table(response.data)
-				return { weather: response.data }
+		axios.get('https://project3api.herokuapp.com/weather')
+				 .then(response => {
+							this.setState(prevState => {
+														return { weather: response.data }
 			})
 		})
-		// console.groupEnd()
 
 		//get clothes data and icons
 		//console.group('Clothes API')
@@ -100,13 +96,29 @@ class SubmissionContainer extends Component {
 		//basics of idea found at www.fourm.freecodecamp.org...
 		//.../t/reactjs-using-state-to-update-single-property-on-an-object
 		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
-		console.log('updateCurrentFrom copy: ', formCopy)
+		//console.log('updateCurrentFrom copy: ', formCopy)
 		if(type === 'weather'){
-			formCopy[type] = name
+			if (imgURL)
+			{
+				formCopy[type] = name
+			}
+			else {
+				formCopy.weather = ''}
 		}
 		else if(type === 'clothes'){
-			formCopy.clothes.push({ name: name,
+			// console.log('the imgURL =>' +imgURL);
+			//if imgURL present then push item on list
+			if (imgURL)
+			{
+				formCopy.clothes.push({ name: name,
 														imgURL: imgURL})
+			}
+			else {
+				// console.log('we are deleting in updateCurrentForm');
+				 //if imgURL not present remove item from clothes array
+				 formCopy.clothes = formCopy.clothes.filter( (item) => {
+				 		return item.name !== name})
+			}
 		}
 
 		this.setState(prevState => {
@@ -117,16 +129,17 @@ class SubmissionContainer extends Component {
 	updateCurrentFromFields = (field, value) => {
 		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
 		formCopy[field] = value
-		console.log('updateCurrentFromFields');
-		console.log(formCopy)
+		// console.log('updateCurrentFromFields');
+		// console.log(formCopy)
 		this.setState(prevState => {
 			return { currentForm: formCopy }
 		})
 	}
 
-	//Handles Submission
+//Handles Submission
 
-//FIX --i dont think these functions are necessary
+//-------------------------------------------------------
+//FIX --i dont think these two functions are necessary
 	submitFormData = () => {
 		// console.log('Submit Form Data Fired')
 		// console.table(this.state.currentForm)
@@ -138,6 +151,19 @@ class SubmissionContainer extends Component {
 		// console.table(this.state.currentForm)
 		updateSubmission(this.state.currentID, this.state.currentForm)
 	}
+//-------------------------------------------------------
+
+	//validates the form fields so that at least 1 weather, 1 clothing, & a name exists
+	formValidator = () => {
+		if (this.state.currentForm.weather
+				&& this.state.currentForm.clothes.length > 0
+				&& this.state.currentForm.name)
+		{
+				return true
+		}
+		else { return false }
+
+	}//end formValidator
 
 	handleDelete = () => {
 		// console.log('DELETED :', this.state.currentID)
@@ -159,30 +185,23 @@ class SubmissionContainer extends Component {
 						}
 					}//end return
 				})//end setState
-
 			})//end then getSumittedForms
-
-
-
-			// this.setState({
-			// 	currentID: '',
-			// 	formToggle: false,
-			// 	updateToggle: false
-			// })
 		})//end removeSubmission
-	}
+	}//end handleDelete
 
-	handleSubmission = (nameSub, whySub) => {
+	handleSubmission = () => {
 		//copies currnet form
 		// let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
 		// formCopy.name = nameSub
 		// formCopy.why = whySub
 
 /*
-should createSubmission
+should validate form
+then createSubmission
 then get the new list of inputs from the db
 then set state
 */
+	if (!this.formValidator() )return
 
 		 createSubmission(this.state.currentForm).then(()=>{
 			 console.log('createdSubmission')
@@ -211,24 +230,13 @@ then set state
 	}//end handleSubmission
 
 	//Handles Updating Input
-	handleSubmissionUpdate = (nameSub, whySub) => {
-		//let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
-		//formCopy.name = nameSub
-		//formCopy.why = whySub
-		//console.table(formCopy)
-		// this.setState(prevState => {
-		// 	return {
-		// 		updateToggle: false,
-		// 		formToggle: false
-		// 		//currentForm: formCopy
-		// 	}
-		// }, this.updateFormData())
-
+	handleSubmissionUpdate = () => {
+		if (!this.formValidator() )return
 		updateSubmission(this.state.currentID, this.state.currentForm)
 			.then(()=>{
-				console.log('updatedSubmission')
+				// console.log('updatedSubmission')
 				getSubmittedForms().then(inputs => {
-					console.log('gotsubmittedform')
+					// console.log('gotsubmittedform')
 					this.setState(prevState => {
 						return {
 							updateToggle: false,
