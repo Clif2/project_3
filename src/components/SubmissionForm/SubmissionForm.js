@@ -107,7 +107,7 @@ const SubmissionForm = (props) => {
 
      { props.update === false ?
           <form className={css(styles.outerGrid)} onSubmit={onSubmit}>
-            
+
               <div className="weather">
                 <h1>Weather</h1>
                 <WeatherChoices weather={props.weatherIcons}
@@ -155,7 +155,7 @@ const SubmissionForm = (props) => {
                 <label  htmlFor="input-why">Why is this a good choice?: </label>
                 <textarea id="input-why" onChange={updateFields} name='why' row="20" placeholder={props.formData.why}/>
                 <button className={css(styles.buttonSubmit)} type='submit'>Update</button>
-                <button className={css(styles.buttonSubmit)} onClick={deleteSubmission} name='delete'>Delete</button>
+                {/* <button className={css(styles.buttonSubmit)} onClick={deleteSubmission} name='delete'>Delete</button> */}
              </div>
              </div>
               </form>
@@ -179,7 +179,7 @@ const styles = StyleSheet.create ({
     'grid-column': '2 / 6',
     'grid-row': '2'
   },
-  
+
   innerGrid: {
    display: 'grid',
     'grid-template-columns': '1fr 1fr 1fr 1fr',
@@ -187,12 +187,12 @@ const styles = StyleSheet.create ({
   },
 
   innerForm: {
-    'grid-column': '1 / span 1', 
+    'grid-column': '1 / span 1',
     'grid-row': '1 / span 3',
-    display: 'flex', 
+    display: 'flex',
     'flex-direction': 'column',
-   }, 
-    
+   },
+
    textArea: {
       padding: spaceing.s1,
       outline: '0',
@@ -200,12 +200,12 @@ const styles = StyleSheet.create ({
       border: '1px solid',
       borderColor: color.cdarkgrey,
       'border-radius': '2px',
-      
+
       'line-height': '150%',
 
       ':hover, :focus': {
         'border-color': color.accent2
-      
+
       }
     },
 
@@ -220,9 +220,9 @@ const styles = StyleSheet.create ({
       background: color.accent,
       border: 0,
       fontSize: fontSize.body,
-      fontWeight: '800', 
+      fontWeight: '800',
       color: color.white
-    } 
+    }
   ,
 
   innerCloths: {

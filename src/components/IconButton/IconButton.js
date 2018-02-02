@@ -150,8 +150,9 @@ export const styles = StyleSheet.create({
 		animationTimingFunction:'ease',
 		animationDirection:'alternate',
     padding: 0,
-    boxShadow: '0px 15px 15px -10px rgba(245,50,64, 1)', 
-      
+    boxShadow:  '0 19px 38px rgba(245,50,64, 1), 0 15px 12px rgba(245,50,64, 1)',
+    //'0px 15px 15px -10px rgba(245,50,64, 1)',
+
     //'0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(222, 128, 237)',
 
     // boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
