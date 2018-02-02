@@ -19,56 +19,35 @@ class WeatherChoices extends Component {
    this.setState((prevState) => ({selectedWeather: this.props.selectedWeather}))
  }
 
- //onChangeWeather = e => {
-   //onClick
-   //check type
-   //if type is clothing and it is toggledOn send imgURL
-   //else send imgURL = ''
-//    let toggle  = !this.state.selected
-//
-//   if (this.type === 'clothes')
-//   {
-//     if( toggle )
-//     {
-//       this.updateCurrentForm(this.type, this.icon.name, this.
-//                         icon.imgURL)
-//     }
-//     else{
-//       console.log('delete clothing item');
-//       this.updateCurrentForm(this.type, this.icon.name, '')
-//     }
-//   }
-//   else  //assumes the only other case is 'weather'
-//   {
-//     //FIX I think  i can make this more dry and take it out completely
-//     if( toggle )
-//     {
-//       this.updateCurrentForm(this.type, this.icon.name, this.
-//                         icon.imgURL)
-//     }
-//     else{
-//       console.log('delete weather item');
-//       this.updateCurrentForm(this.type, this.icon.name, '')
-//     }
-//   }
-//
-// this.setState((prevState) => ({selectedWeather: ''}))
+ onChangeWeather = (type, name, imgURL ) => {
+   //calls the updateCurrentForm function passed down from parent
+   //then sets the state for the current weather
+   //thereby forcing a render to unselect other weather icons
+   console.log('weatherchoices');
+   console.log(this);
+   if(imgURL){
+     // this.updateCurrentForm(type, name, imgURL)
+     this.setState((prevState) => ({selectedWeather: name}), this.props.updateCurrentForm(type, name, imgURL))
+   }
+   else {
+     this.setState((prevState) => ({selectedWeather: ''})
+     , this.props.updateCurrentForm(type, name, imgURL))
 
-//}//end onClick
-
-
+   }
+ }
 
 
   render () {
-    console.log('props of weatherchoices');
-    console.log(this.props);
     let weather = ''
-    if(!this.props.selectedWeather){
+    console.log('rerendering weather choices');
+    if(!this.state.selectedWeather){
+      console.log( 'all icons should be false');
       weather = this.props.weather.map((item, idx) =>{
+        console.log('everything should be getting deleted');
       return(
         <IconButton
-          //FIX this should pass our new function which wraps this one
           updateCurrentForm={this.props.updateCurrentForm}
+          onChangeWeather={this.onChangeWeather}
           icon={item}
           type='weather'
           selected= {false}
@@ -81,10 +60,13 @@ class WeatherChoices extends Component {
     else{
       weather = this.props.weather.map((item, idx) =>{
         let isSelected = false
-        if (this.props.formData.weather===item.name) {isSelected = true}
+        // if (this.props.formData.weather===item.name) {isSelected = true}
+        if (this.state.selectedWeather===item.name) {isSelected = true}
+
         return(
         <IconButton
           updateCurrentForm={this.props.updateCurrentForm}
+          onChangeWeather={this.onChangeWeather}
           icon={item}
           type='weather'
           selected={isSelected}

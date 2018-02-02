@@ -98,8 +98,6 @@ const SubmissionForm = (props) => {
     )//end map
   }//end else
 
-  console.log('these are the props=>')
-  console.log(props);;
 
   return (
     <div>
@@ -111,7 +109,6 @@ const SubmissionForm = (props) => {
               <WeatherChoices weather={props.weatherIcons}
                               selectedWeather=''
                               updateCurrentForm={props.updateCurrentForm}
-                              //START HERE
                               formData={props.formData}/>
              </div>
 

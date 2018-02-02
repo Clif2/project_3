@@ -18,9 +18,13 @@ class IconButton extends Component {
 
 
  componentDidMount () {
+   // console.log('iconbutton componentDidMount');
+   // this.setState((prevState) => ({selected: this.props.selected}))
+
  }
 
  onClick = e => {
+   e.preventDefault()
    //onClick
    //check type
    //if type is clothing and it is toggledOn send imgURL
@@ -41,15 +45,17 @@ class IconButton extends Component {
   }
   else  //assumes the only other case is 'weather'
   {
-    //FIX I think  i can make this more dry and take it out completely
+
     if( toggle )
     {
-      this.updateCurrentForm(this.type, this.icon.name, this.
+      this.props.onChangeWeather(this.type, this.icon.name, this.
                         icon.imgURL)
+      //this.updateCurrentForm(this.type, this.icon.name, this.
+        //                icon.imgURL)
     }
     else{
       console.log('delete weather item');
-      this.updateCurrentForm(this.type, this.icon.name, '')
+      this.props.onChangeWeather(this.type, this.icon.name, '')
     }
   }
 
@@ -58,10 +64,24 @@ this.setState((prevState) => ({selected: !prevState.selected}))
 }//end onClick
 
   render () {
+    // if(this.type ==='weather'){
+    // console.log('rendering icons');
+    // console.log('name ' + this.icon.name);
+    // console.log('selected'+this.state.selected);}
+    let isIconSelected = false
+    if(this.type ==='weather'){
+      isIconSelected = this.props.selected
+    }
+    else{
+      isIconSelected = this.state.selected
+
+    }
     return (
       <div
-      className={css( this.state.selected ? styles.iconSelected : styles.iconInactive, styles.icon)}
-      onClick={this.onClick}>
+        
+          className={css( isIconSelected ? styles.iconSelected : styles.iconInactive, styles.icon)}
+          onClick={this.onClick}>
+
 
       {this.props.isRadio != null ?
         <div>
