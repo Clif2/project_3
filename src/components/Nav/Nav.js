@@ -11,7 +11,7 @@ const Nav = () => {
   return (
     <nav className={css(style.header)}>
       <div>
-        <h1 className={css(style.title)}> Weather Whiz </h1>
+        <h1 className={css(style.title)}>Weather Wise</h1>
       </div>
       {/* //for now Home automatically redirects to /submissions */}
       <div className={css(style.navItems)}>
@@ -40,28 +40,28 @@ const style = StyleSheet.create ({
     'z-index': '99',
     position: 'sticky',
     'top': '-1px',
-    
+
      },
-  
+
   title: {
-    fontFamily: greatFont.fontFamily, 
-    fontSize: fontSize.heading, 
-    color: color.cdarkgrey  
+    fontFamily: greatFont.fontFamily,
+    fontSize: fontSize.heading,
+    color: color.cdarkgrey
   },
-  
+
   navItems: {
-    fontFamily: openSans.fontFamily, 
-    fontSize: fontSize.body, 
+    fontFamily: openSans.fontFamily,
+    fontSize: fontSize.body,
     color: color.cdarkgrey,
-    width: '75%', 
-    display: 'flex', 
+    width: '75%',
+    display: 'flex',
     'justify-content': 'flex-end',
     'align-content': 'center',
-    'a': { 
-      'text-align': 'center', 
+    'a': {
+      'text-align': 'center',
       'vertical-align': 'middle'
      }
-  }, 
+  },
 
   navLink: {
     'text-decoration': 'none',
@@ -69,4 +69,3 @@ const style = StyleSheet.create ({
   }
 
 })
-
