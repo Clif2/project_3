@@ -7,6 +7,9 @@ import {
 } from 'react-router-dom'
 
 import './App.css'
+import { StyleSheet, css } from 'aphrodite/no-important'
+import { spaceing, color, greatFont, lightHeight, fontSize, openSans  } from './styles/base.css.js'
+
 import SubmissionContainer from './SubmissionContainer'
 import Nav from './components/Nav/Nav'
 import WeatherContainer from './WeatherContainer'
@@ -16,7 +19,7 @@ import NotFound from './components/NotFound/NotFound'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className={css(styles.app)}>
         <Nav/>
         <Switch>
             {/* <Route path={`/submissions`} component={SubmissionContainer}/> */}
@@ -35,3 +38,15 @@ class App extends Component {
 }
 
 export default App
+
+const styles = StyleSheet.create ({
+    
+    app: {
+    
+    backgroundColor: color.clightgrey,
+    fontFamily: openSans.fontFamily,
+    fontSize: fontSize.body
+
+    }
+
+})

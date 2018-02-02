@@ -1,7 +1,11 @@
 import React from 'react'
 
 import IconButton from '../IconButton/IconButton.js'
-import WeatherFormIcon from '../WeatherFormIcon/WeatherFormIcon.js'
+import WeatherChoices from '../WeatherChoices/WeatherChoices.js'
+import { StyleSheet, css } from 'aphrodite/no-important'
+import { spaceing, color, greatFont, lightHeight, fontSize, openSans  } from '../../styles/base.css.js'
+
+
 
 const SubmissionForm = (props) => {
 
@@ -33,18 +37,20 @@ const SubmissionForm = (props) => {
 
   let weather = []
   let clothes = []
-
+  //if the submit new input form
   if (!props.update){
     weather = props.weatherIcons.map((item, idx) =>{
     return(
       <IconButton
         updateCurrentForm={props.updateCurrentForm}
-        isRadio='1'
+        // isRadio='1'
         icon={item}
         type='weather'
         selected= {false}
         key={idx}
-      />)}
+      />)
+
+    }
     )//end map
 
     clothes = props.clothingIcons.map((item, idx) => {
@@ -59,6 +65,7 @@ const SubmissionForm = (props) => {
     }
     )//end map
   }//end if
+  //else the update input form
   else{
     weather = props.weatherIcons.map((item, idx) =>{
       let isSelected = false
@@ -66,7 +73,6 @@ const SubmissionForm = (props) => {
       return(
       <IconButton
         updateCurrentForm={props.updateCurrentForm}
-        isRadio='1'
         icon={item}
         type='weather'
         selected={isSelected}
@@ -97,34 +103,62 @@ const SubmissionForm = (props) => {
 
 
   return (
-    <div>
-      <div className="weather">
-        <h1>Weather</h1>
-         {weather}
-       </div>
+    <div className={css(styles.main)}>
 
-      <div className="clothing">
-        <h1>Clothing</h1>
-       {clothes}
-      </div>
      { props.update === false ?
-          <form onSubmit={onSubmit}>
-            <label htmlFor="input-name">Name: </label>
-            <input id="input-name" onChange={updateFields} type='text'  name='name'/>
-            <label htmlFor="input-why">Why is this a good choice?: </label>
-            <textarea id="input-why" onChange={updateFields} name='why' />
-            <button type='submit'>Submit</button>
+          <form className={css(styles.outerGrid)} onSubmit={onSubmit}>
+
+              <div className="weather">
+                <h1>Weather</h1>
+                <WeatherChoices weather={props.weatherIcons}
+                              selectedWeather=''
+                              updateCurrentForm={props.updateCurrentForm}
+                              formData={props.formData}/>
+              </div>
+              <div className={css(styles.innerGrid)}>
+                <div className={css(styles.innerCloths)}>
+                  <h1>Clothing</h1>
+                  {clothes}
+                </div>
+                <div className={css(styles.innerForm)}>
+                  <div className={css(styles.textArea)}>
+                    <label htmlFor="input-name">Name: </label>
+                    <input id="input-name" onChange={updateFields} type='text'  name='name'/>
+                    <label htmlFor="input-why">Why is this a good choice?: </label>
+                    <textarea id="input-why" row="30" onChange={updateFields} name='why' />
+                    <button className={css(styles.buttonSubmit)} type='submit'>Submit</button>
+                  </div>
+                </div>
+              </div>
           </form>
       :
-          <form onSubmit={onUpdate}>
-            <label htmlFor="input-name"> Name: </label>
-            <input id="input-name" onChange={updateFields} type='text' name='name' value={props.formData.name}/>
-            <label htmlFor="input-why">Why is this a good choice?: </label>
-            <textarea id="input-why" onChange={updateFields} name='why' placeholder={props.formData.why}/>
-            <button type='submit'>Update</button>
-            <button onClick={deleteSubmission} name='delete'>Delete</button>
-          </form>
-
+          <form className={css(styles.outerGrid)} onSubmit={onUpdate}>
+            <div className="weather">
+              <h1>Weather</h1>
+             <WeatherChoices weather={props.weatherIcons}
+                             selectedWeather={props.formData.weather}
+                             updateCurrentForm={props.updateCurrentForm}
+                             formData={props.formData}/>
+             </div>
+             <div className={css(styles.innerGrid)}>
+                <div className={css(styles.innerCloths)}>
+                 <div className="clothing">
+                 <h1>Clothing</h1>
+                {clothes}
+               </div>
+              </div>
+            </div>
+            <div className={css(styles.innerForm)}>
+              <div className={css(styles.textArea)}>
+                <label htmlFor="input-name"> Name: </label>
+                <input id="input-name" onChange={updateFields} type='text' name='name' value={props.formData.name}/>
+                <label  htmlFor="input-why">Why is this a good choice?: </label>
+                <textarea id="input-why" onChange={updateFields} name='why' row="20" placeholder={props.formData.why}/>
+                <button className={css(styles.buttonSubmit)} type='submit'>Update</button>
+                {/* <button className={css(styles.buttonSubmit)} onClick={deleteSubmission} name='delete'>Delete</button> */}
+             </div>
+             </div>
+              </form>
 
         }
       </div>
@@ -132,5 +166,68 @@ const SubmissionForm = (props) => {
 
 
 }//end SubmissionForm
-
 export default SubmissionForm
+
+const styles = StyleSheet.create ({
+  main: {
+    display: 'grid',
+    'grid-template-columns': '1fr 1fr 1fr 1fr 1fr 1fr',
+    'grid-template-rows': 'auto 1fr auto'
+  },
+
+  outerGrid: {
+    'grid-column': '2 / 6',
+    'grid-row': '2'
+  },
+
+  innerGrid: {
+   display: 'grid',
+    'grid-template-columns': '1fr 1fr 1fr 1fr',
+    'grid-template-rows': 'auto 1fr auto'
+  },
+
+  innerForm: {
+    'grid-column': '1 / span 1',
+    'grid-row': '1 / span 3',
+    display: 'flex',
+    'flex-direction': 'column',
+   },
+
+   textArea: {
+      padding: spaceing.s1,
+      outline: '0',
+      height: '300px',
+      border: '1px solid',
+      borderColor: color.cdarkgrey,
+      'border-radius': '2px',
+
+      'line-height': '150%',
+
+      ':hover, :focus': {
+        'border-color': color.accent2
+
+      }
+    },
+
+    label: {
+    'margin-left': '0px',
+    color: '#999999',
+    },
+
+    buttonSubmit: {
+      width: 'auto',
+      padding: spaceing.s2,
+      background: color.accent,
+      border: 0,
+      fontSize: fontSize.body,
+      fontWeight: '800',
+      color: color.white
+    }
+  ,
+
+  innerCloths: {
+    'grid-column': '2 / span 3'
+  }
+
+
+})

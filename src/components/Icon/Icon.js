@@ -2,8 +2,8 @@ import React from 'react'
 
 // functional component that returns an icon
 const iconStyle = {
-  height: '150px',
-  width: '150px',
+  height: '100px',
+  width: '100px',
   borderRadius: '9px'
 }
 
