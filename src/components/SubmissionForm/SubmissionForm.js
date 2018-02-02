@@ -149,6 +149,7 @@ const SubmissionForm = (props) => {
                     {clothes}
                   </div>
                  </div>
+                 
             <div className={css(styles.innerForm)}>
               <div className={css(styles.textArea)}>
                 <label htmlFor="input-name"> Name: </label>
@@ -162,6 +163,7 @@ const SubmissionForm = (props) => {
                 }
              </div>
              </div>
+           </div>
               </form>
 
         }
