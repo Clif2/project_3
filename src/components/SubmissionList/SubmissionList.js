@@ -1,7 +1,9 @@
 /*
-GL
+GL 
 */
 import React from 'react'
+import { StyleSheet, css } from 'aphrodite/no-important'
+import { spaceing } from '../../styles/base.css.js'
 
 //import components
 import SubmissionItem from '../SubmissionItem/SubmissionItem'
@@ -33,12 +35,46 @@ const SubmissionList = props => {
 
   return (
     <div>
-     <h1>What's Your Weather Ware?</h1>
-     <button onClick={props.toggleForm}>Add Your Own Idea!</button>
-      {inputs}
+      <div className={css(styles.heroSection)}>
+        <div>
+          <h1>What's Your Weather Ware?</h1>
+          <button onClick={props.toggleForm}>Add Your Own Idea!</button>
+        </div>
+      </div>
+      <div className={css(styles.main)}>
+        {inputs}
+      </div>
     </div>
   )
 
 }
 
 export default SubmissionList
+
+
+const styles = StyleSheet.create ({
+
+
+  main: { 
+    'max-width': '960px',
+    margin: '0 auto 30px',
+    display: 'grid',
+    'grid-template-columns': `repeat(auto-fill, minmax(300px, 1fr))`,
+    'grid-gap': spaceing.s1
+  },
+  
+  heroSection: {
+    display: 'flex',
+    'flex-direction': 'column',
+    'justify-content' : 'space-evenly', 
+    'align-content': 'center',
+    'margin-bottom': spaceing.s3, 
+    height: spaceing.s6
+  }
+
+  callOut: {
+    
+  }
+
+
+}) 
