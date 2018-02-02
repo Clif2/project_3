@@ -30,11 +30,11 @@ const SubmissionItem = props => {
   return (
 
     <div className={css(styles.card)} style={props.style}>
-      <h3>When it's {props.input.weather} {props.input.name} wears:</h3>
+      <h3>When it's <span className={css(styles.weatherSpan)}>{props.input.weather}</span> {props.input.name} wears:</h3>
       <div className={css(styles.iconStyle)}>
         {clothing}
       </div>
-      <p>because..."{props.input.why}"</p>
+      <p>because..."<span className={css(styles.quoteSpan)}>{props.input.why}</span>"</p>
 
       <button className={css(styles.button)} onClick={()=>{props.handleUpdate(props.input._id)}}>Edit</button>
     </div>
@@ -46,13 +46,20 @@ const SubmissionItem = props => {
 export default SubmissionItem
 
 const styles = StyleSheet.create({
- 
-    
+
+ weatherSpan: {
+   color: 'rgb(245,50,64)',
+   textTransform: 'uppercase'
+ },
+
+ quoteSpan: {
+   color: 'rgb(18, 100, 232)'
+ },
+
   iconStyle: {
     margin: spaceing.s1,
-    
   },
- 
+
 
   card:{
     display: 'grid',
@@ -64,7 +71,7 @@ const styles = StyleSheet.create({
     border: '2px solid',
     'border-color': color.clightgrey,
   },
-
+ 
   button: {
 	 'min-width': '150px',
 	 'max-width': '250px',
@@ -85,3 +92,4 @@ const styles = StyleSheet.create({
    },
  
 })  //styles end                               
+
