@@ -9,7 +9,8 @@ import IconButton from '../IconButton/IconButton'
 
 const iconStyle = {
   height: '150px',
-  width: '150px'
+  width: '150px',
+  margin: '9px'
 }
 
 const WeatherList = props => {

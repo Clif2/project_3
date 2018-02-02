@@ -11,7 +11,6 @@ export const button = {
     content: '""',
     position: 'absolute', 
     borderRadius: '48px',
-    'z-index': '-1'
     },
   
   before: {

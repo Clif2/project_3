@@ -21,7 +21,7 @@ const SubmissionItem = props => {
           let theIcon = { imgURL: item.imgURL,
                           name:item.name,
                           type:'clothes',
-                          style: iconStyle}
+                           }
           return ( <Icon key={index}
                                     icon={theIcon}
                                     />)
@@ -31,7 +31,7 @@ const SubmissionItem = props => {
 
     <div className={css(styles.card)} style={props.style}>
       <h3>When it's {props.input.weather} {props.input.name} wears:</h3>
-      <div className='icon-list'>
+      <div className={css(styles.iconStyle)}>
         {clothing}
       </div>
       <p>because..."{props.input.why}"</p>
@@ -46,11 +46,25 @@ const SubmissionItem = props => {
 export default SubmissionItem
 
 const styles = StyleSheet.create({
- card:{
-  padding: spaceing.s4, 
-  background: 'rgba(255, 255, 255, 1.0)',
-  boxShadow: '0 3px 17px 2px rgba(0, 0, 0, .05)',
-  borderRadius: '9px'
+ 
+    
+  iconStyle: {
+    margin: spaceing.s1,
+    display: 'grid',
+    'justify-content': 'space-between',
+    'alight-content': 'center',
+
+    
+  },
+ 
+
+  card:{
+  padding: spaceing.s3, 
+  background: color.white,
+  boxShadow: '0 72px 82px 81px rgba(0, 0, 0, .07)',
+  borderRadius: '9px',
+  border: '2px solid',
+  'border-color': color.clightgrey
  },
 
   button: {

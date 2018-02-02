@@ -8,13 +8,6 @@ import { spaceing, color, greatFont, lightHeight, fontSize, openSans  } from '..
 //import components
 import SubmissionItem from '../SubmissionItem/SubmissionItem'
 
-const evenStyle = {
-  background: 'white'
-}
-const oddStyle = {
-  background: 'grey'
-}
-
 const SubmissionList = props => {
   // console.log('props for submissionlist');
 
@@ -66,18 +59,20 @@ const styles = StyleSheet.create ({
     'justify-content' : 'space-evenly', 
     'align-content': 'center',
     height: spaceing.s12,
-    backgroundColor: color.primary 
+    backgroundColor: color.primary, 
+    'margin-bottom': spaceing.s3
   }, 
 
   callOut: {
     fontFamily: greatFont.fontFamily, 
     fontSize: fontSize.displayLarge, 
-    color: color.white
+    color: color.white,
+    'margin-top': spaceing.s7
   }, 
 
    buttonCall: {
-	 'min-width': '150px',
-	 'max-width': '250px',
+    fontFamily: openSans.fontFamily,
+    fontSize: fontSize.heading,
 	  border: '3px solid',
     borderColor: color.accent,
     borderRadius: '3px',
@@ -85,8 +80,8 @@ const styles = StyleSheet.create ({
 	  color: color.white,
 	  'vertical-align': 'middle',
 	  position: 'relative',
-    margin: spaceing.s3,
-    padding: spaceing.s3,
+    margin: spaceing.s6,
+    padding: spaceing.s4,
     
     transition: 'color 0.3s',
     'transition-timing-function': 'cubic-bezier(0.2, 1, 0.3, 1)',
@@ -96,6 +91,10 @@ const styles = StyleSheet.create ({
     backgroundColor: color.wlightgrey,   
     color: color.white 
    },
+
+   iconStyle: {
+    margin: spaceing.s0,
+   }
  
  }
 

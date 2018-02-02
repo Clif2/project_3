@@ -37,6 +37,7 @@ const style = StyleSheet.create ({
     height: spaceing.s5,
     clear: 'both',
     padding: spaceing.s3,
+    'z-index': '99',
     position: 'sticky',
     'top': '-1px',
     
