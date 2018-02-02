@@ -3,8 +3,7 @@ GL
 */
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaceing } from '../../styles/base.css.js'
-import { button } from '../../styles/button.css.js' 
+import { spaceing, color } from '../../styles/base.css.js'
 
 //import component icons
 import Icon from '../Icon/Icon'
@@ -47,7 +46,7 @@ const SubmissionItem = props => {
 export default SubmissionItem
 
 const styles = StyleSheet.create({
- card: {
+ card:{
   padding: spaceing.s4, 
   background: 'rgba(255, 255, 255, 1.0)',
   boxShadow: '0 3px 17px 2px rgba(0, 0, 0, .05)',
@@ -57,31 +56,36 @@ const styles = StyleSheet.create({
   button: {
 	 'min-width': '150px',
 	 'max-width': '250px',
-	  display: 'block',
-	  border: '3px black solid',
+	  border: '3px solid',
+    borderColor: color.secondary,
     borderRadius: '48px',
-    background: 'none',
-	  color: 'inherit',
+    backgroundColor: color.primary,
+	  color: color.cdarkgrey,
 	  'vertical-align': 'middle',
 	  position: 'relative',
-	  'z-index': '1',
     margin: spaceing.s1,
     padding: spaceing.s1,
-    transition: button.transition,
-    ':before, :after': button.sharedPseudo,  
-    ':before': button.before,
-    ':after': button.after,
+//    transition: button.transition,
+    ':before, :after': {
+        content: '""',
+        position: 'absolute',
+        backgroundColor: color.primary,
+        borderRadius: '48px',
+      }, 
+ //   ':before': button.before,
+ //   ':after': button.after,
 
   
   ':hover': {
-     color: '#fff'
+     backgroundColor: color.clightgrey,
+     color: color.secondary 
    },
   ':hover::before': {
      opacity: 1
    },
  
   ':hover::after': {
-   'background-color': '#fff'
+   'background-color': color.clightgrey 
    },
   
    ':hover::after, :hover::before': {
