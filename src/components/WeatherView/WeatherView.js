@@ -40,19 +40,26 @@ const WeatherView = props => {
   return (
 
     <div className={css(styles.card)}>
-      <h1>When It's {props.weather.name}</h1>
-      <Icon icon={weatherInfo}/>
-      <h4>You should wear...</h4>
-      {clothing}
-    <br/>
-      <button onClick={props.toggleWeather}>Pick Another Weather</button>
+      <div className={css(styles.grid)}>
+        <div className={css(styles.weather)}>
+          <h1>When It's {props.weather.name}</h1>
+          <Icon icon={weatherInfo}/>
+        </div>
+        <div className={css(styles.clothes)}>
+          <h4>You should wear...</h4>
+            <div className={css(styles.icongrid)}>
+            {clothing}
+            </div>
+          <br/>
+          <button className={css(styles.button)} onClick={props.toggleWeather}>Pick Another Weather</button>
+        </div> 
+      </div>
     </div>
   )
 
 }
 
 export default WeatherView
-
 const styles = StyleSheet.create({
  
     
@@ -60,17 +67,42 @@ const styles = StyleSheet.create({
     margin: spaceing.s1,
     
   },
- 
+   
 
   card:{
-    display: 'grid',
-    'justify-content': 'space-between',
+    width: '720px',
+    margin: '0 auto',
+    'margin-top': spaceing.s3,
     padding: spaceing.s3, 
     background: color.white,
     boxShadow: '0 2px 2px 3px rgba(0, 0, 0, .07)',
     borderRadius: '9px',
     border: '2px solid',
     'border-color': color.clightgrey,
+  },
+  
+  grid: {
+    width: '75%',
+    display: 'grid', 
+    margin: '0 auto',
+    'margin-top': spaceing.s3,
+    'grid-template-columns': '1fr 1fr 1fr 1fr',
+  },
+
+  icongrid: {
+    display: 'flex',
+    'flex-wrap': 'wrap',
+    'justify-content': 'space-evenly',
+    margin: spaceing.s1
+
+  },
+
+  weather: {
+    'grid-area': 'span 1',
+  },
+
+  clothes: {
+    'grid-area': '2 / 5'
   },
 
   button: {
@@ -86,12 +118,11 @@ const styles = StyleSheet.create({
     margin: spaceing.s1,
     padding: spaceing.s1,
   
-  ':hover': {
-     backgroundColor: color.clightgrey,
-     color: color.secondary 
-    },
+    ':hover': {
+      backgroundColor: color.clightgrey,
+      color: color.secondary 
+      },
    },
  
 })  //styles end  
-
-
+console.log(styles.weather)

@@ -36,7 +36,9 @@ const WeatherList = props => {
   return (
     <div className={css(styles.card)}>
      <h1>Choose Your Weather</h1>
-     {weathers}
+     <div className={css(styles.grid)}>
+       {weathers}
+     </div>
     </div>
   )
 
@@ -51,17 +53,26 @@ const styles = StyleSheet.create({
     margin: spaceing.s1,
     
   },
- 
+   
 
   card:{
-    display: 'grid',
-    'justify-content': 'space-between',
+    width: '720px',
+    margin: '0 auto',
+    'margin-top': spaceing.s3,
     padding: spaceing.s3, 
     background: color.white,
     boxShadow: '0 2px 2px 3px rgba(0, 0, 0, .07)',
     borderRadius: '9px',
     border: '2px solid',
     'border-color': color.clightgrey,
+  },
+  
+  grid: {
+    width: '75%',
+    display: 'flex',
+    'flex-wrap': 'wrap',
+    'justify-content': 'space-evenly',
+    margin: `${spaceing.s3} auto`,
   },
 
   button: {
