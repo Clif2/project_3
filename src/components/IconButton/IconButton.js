@@ -43,7 +43,7 @@ class IconButton extends Component {
       this.updateCurrentForm(this.type, this.icon.name, '')
     }
   }
-  else  //assumes the only other case is 'weather'
+  else if(this.type === 'weather')
   {
 
     if( toggle )
@@ -54,9 +54,15 @@ class IconButton extends Component {
         //                icon.imgURL)
     }
     else{
-      console.log('delete weather item');
+      // console.log('delete weather item');
       this.props.onChangeWeather(this.type, this.icon.name, '')
     }
+  }
+  else{
+    //else this is a weatherview button
+    this.updateCurrentForm(this.type, this.icon.name, this.
+                      icon.imgURL)
+    return
   }
 
 this.setState((prevState) => ({selected: !prevState.selected}))
