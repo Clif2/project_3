@@ -3,7 +3,7 @@ import React from 'react'
 import IconButton from '../IconButton/IconButton.js'
 import WeatherChoices from '../WeatherChoices/WeatherChoices.js'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaceing, color, greatFont, lightHeight, fontSize, openSans  } from '../../styles/base.css.js'
+import { spaceing, color, greatFont, lineHeight, fontSize, openSans  } from '../../styles/base.css.js'
 
 
 
@@ -135,19 +135,18 @@ const SubmissionForm = (props) => {
           <form className={css(styles.outerGrid)} onSubmit={onUpdate}>
             <div className="weather">
               <h1>Weather</h1>
-             <WeatherChoices weather={props.weatherIcons}
+              <WeatherChoices weather={props.weatherIcons}
                              selectedWeather={props.formData.weather}
                              updateCurrentForm={props.updateCurrentForm}
                              formData={props.formData}/>
              </div>
              <div className={css(styles.innerGrid)}>
                 <div className={css(styles.innerCloths)}>
-                 <div className="clothing">
-                 <h1>Clothing</h1>
-                {clothes}
-               </div>
-              </div>
-            </div>
+                  <div className="clothing">
+                    <h1>Clothing</h1>
+                    {clothes}
+                  </div>
+                 </div>
             <div className={css(styles.innerForm)}>
               <div className={css(styles.textArea)}>
                 <label htmlFor="input-name"> Name: </label>
@@ -155,9 +154,10 @@ const SubmissionForm = (props) => {
                 <label  htmlFor="input-why">Why is this a good choice?: </label>
                 <textarea id="input-why" onChange={updateFields} name='why' row="20" placeholder={props.formData.why}/>
                 <button className={css(styles.buttonSubmit)} type='submit'>Update</button>
-                {/* <button className={css(styles.buttonSubmit)} onClick={deleteSubmission} name='delete'>Delete</button> */}
-             </div>
-             </div>
+                 <button className={css(styles.buttonSubmit)} onClick={deleteSubmission} name='delete'>Delete</button> 
+                </div>
+                </div>
+               </div>
               </form>
 
         }
@@ -189,18 +189,15 @@ const styles = StyleSheet.create ({
   innerForm: {
     'grid-column': '1 / span 1',
     'grid-row': '1 / span 3',
-    display: 'flex',
-    'flex-direction': 'column',
    },
 
    textArea: {
       padding: spaceing.s1,
       outline: '0',
-      height: '300px',
       border: '1px solid',
       borderColor: color.cdarkgrey,
       'border-radius': '2px',
-
+       height: '500px',
       'line-height': '150%',
 
       ':hover, :focus': {

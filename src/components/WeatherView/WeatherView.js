@@ -49,9 +49,9 @@ const WeatherView = props => {
           <h4>You should wear...</h4>
             <div className={css(styles.icongrid)}>
             {clothing}
-            </div>
           <br/>
           <button className={css(styles.button)} onClick={props.toggleWeather}>Pick Another Weather</button>
+          </div>
         </div> 
       </div>
     </div>
@@ -87,22 +87,33 @@ const styles = StyleSheet.create({
     margin: '0 auto',
     'margin-top': spaceing.s3,
     'grid-template-columns': '1fr 1fr 1fr 1fr',
+    'grid-gap': spaceing.s0
   },
 
   icongrid: {
     display: 'flex',
     'flex-wrap': 'wrap',
     'justify-content': 'space-evenly',
+    'align-content': 'center',
     margin: spaceing.s1
 
   },
 
   weather: {
-    'grid-area': 'span 1',
+    'grid-column': 'span 1',
+    border: `3px solid ${color.primary}`,
+    padding: spaceing.s1,
+    borderRadius: spaceing.s0
+
   },
 
   clothes: {
-    'grid-area': '2 / 5'
+    'grid-column': '2 / 5',
+    border: `3px solid ${color.primary}`,
+    padding: spaceing.s1,
+    borderRadius: spaceing.s0
+ 
+
   },
 
   button: {
