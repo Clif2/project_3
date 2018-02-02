@@ -64,9 +64,11 @@ render(){
           <div >
             <Icon icon={theIcon}/>
             <p><span className={css(styles.conditionLabel)}>{this.state.condition} </span> </p>
-            <p><span className={css(styles.weatherLabel)}> Current Temp: </span>{this.state.temperature}F</p>
-            <p><span className={css(styles.weatherLabel)}> Feels Like: </span>{this.state.feelsLike}F</p>
-            <p><span className={css(styles.weatherLabel)}> Wind: </span>{this.state.wind}mph</p>
+            <p><span className={css(styles.weatherLabel)}> Current Temp: </span>
+              {this.state.temperature} &#8457;</p>
+            <p><span className={css(styles.weatherLabel)}> Feels Like: </span>
+            {this.state.feelsLike} &#8457;</p>
+            <p><span className={css(styles.weatherLabel)}> Wind: </span>{this.state.wind} mph</p>
           </div>
         :
           <p>weather not available</p>
@@ -83,7 +85,7 @@ export const styles = StyleSheet.create({
   callOut: {
     fontFamily: greatFont.fontFamily,
     fontSize: '25px',
-    color: 'rgb(73, 204, 188)',
+    color: 'rgb(15, 150, 150)',
     textShadow: '1px 2px lightgrey',
     'margin': '0 auto',
     'margin-top': spaceing.s6
@@ -91,7 +93,7 @@ export const styles = StyleSheet.create({
   callOutSmall: {
     fontFamily: greatFont.fontFamily,
     fontSize: '15px',
-    color: 'rgb(73, 204, 188)',
+    color: 'rgb(15, 150, 150)',
     textShadow: '1px 2px lightgrey',
     'margin': '0 auto',
     'margin-top': spaceing.s6
