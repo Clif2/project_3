@@ -8,8 +8,12 @@ From the About section
 * Users are able to add their information (name, weather, clothing) into a form to revist later
 * Users can access previous weather selections through saved forms, can edit or delete forms, and can add or remove comments to their form inputs.
 
+# Written By
+* Rindy
+* Cliff
+* Gwen--Specifically worked on the overall logic, and building the various Weather Components and SubmissionList Component
 
-#Technologies used
+# Technologies used
 * React 
 * https://drewish.com/tools/vertical-rhythm/
 * http://www.modularscale.com/
@@ -31,8 +35,13 @@ From the About section
     "react-scripts": "1.1.0",
     "react-test-renderer": "^16.2.0"
 
-#Resources 
+# Resources 
 * www.unsplash.com (for images)
 * wwww.burst.shopify.com  (for images)
 * Visual Design System Reference               https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32
 * https://zellwk.com/blog/why-vertical-rhythms/
+
+# To-Do List
+* Add Weather API
+* Show clothing to wear based on current weather
+* Add game component
