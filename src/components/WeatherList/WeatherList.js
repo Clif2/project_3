@@ -3,7 +3,7 @@ GL
 */
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaceing, color } from '../../styles/base.css.js'
+import { spaceing, color, greatFont, lightHeight, fontSize, openSans } from '../../styles/base.css.js'
 
 import IconButton from '../IconButton/IconButton'
 import LiveWeather from '../LiveWeather/LiveWeather'
@@ -34,11 +34,13 @@ const WeatherList = props => {
 
 
   return (
-    <div className={css(styles.card)}>
+    <div className={css(styles.card, styles.grid2)}>
       <LiveWeather/>
-     <h1>Choose Your Weather</h1>
+      <div>
+     <h1 className={css(styles.grid, styles.callOut)}>Choose Your Weather</h1>
      <div className={css(styles.grid)}>
        {weathers}
+     </div>
      </div>
    </div>
   )
@@ -48,12 +50,19 @@ export default WeatherList
 
 const styles = StyleSheet.create({
 
+  callOut: {
+    fontFamily: greatFont.fontFamily,
+    fontSize: fontSize.displayMedium,
+    color: 'rgb(73, 204, 188)',
+    textShadow: '1px 2px lightgrey',
+    width: '960px',
+    'margin': '0 auto',
+    'margin-top': spaceing.s6
+  },
 
   iconStyle: {
     margin: spaceing.s1,
-
   },
-
 
   card:{
     width: '720px',
@@ -68,6 +77,13 @@ const styles = StyleSheet.create({
   },
 
   grid: {
+    width: '75%',
+    display: 'flex',
+    'flex-wrap': 'wrap',
+    'justify-content': 'space-evenly',
+    margin: `${spaceing.s3} auto`,
+  },
+  grid2: {
     width: '75%',
     display: 'flex',
     'flex-wrap': 'wrap',

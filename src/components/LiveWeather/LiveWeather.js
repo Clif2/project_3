@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { color } from '../../styles/base.css.js'
+import { spaceing, color, greatFont, lightHeight, fontSize, openSans } from '../../styles/base.css.js'
+
 
 import Icon from '../Icon/Icon'
 
@@ -56,12 +57,13 @@ render(){
     }
   return (
       <div className={css(styles.liveWeather)}>
-        <h3>Current Weather in </h3>
-        <h3>{this.state.location}</h3>
+        <h3> <span className={css(styles.callOut)}>Current Weather</span>
+          <span className={css(styles.callOutSmall)}> in</span> </h3>
+        <h3> {this.state.location}</h3>
         { this.state.zipcode ?
           <div >
             <Icon icon={theIcon}/>
-            <p><span className={css(styles.weatherLabel)}>{this.state.condition} </span> </p>
+            <p><span className={css(styles.conditionLabel)}>{this.state.condition} </span> </p>
             <p><span className={css(styles.weatherLabel)}> Current Temp: </span>{this.state.temperature}F</p>
             <p><span className={css(styles.weatherLabel)}> Feels Like: </span>{this.state.feelsLike}F</p>
             <p><span className={css(styles.weatherLabel)}> Wind: </span>{this.state.wind}mph</p>
@@ -76,6 +78,29 @@ render(){
 export default LiveWeather
 
 export const styles = StyleSheet.create({
+
+
+  callOut: {
+    fontFamily: greatFont.fontFamily,
+    fontSize: '25px',
+    color: 'rgb(73, 204, 188)',
+    textShadow: '1px 2px lightgrey',
+    'margin': '0 auto',
+    'margin-top': spaceing.s6
+  },
+  callOutSmall: {
+    fontFamily: greatFont.fontFamily,
+    fontSize: '15px',
+    color: 'rgb(73, 204, 188)',
+    textShadow: '1px 2px lightgrey',
+    'margin': '0 auto',
+    'margin-top': spaceing.s6
+  },
+
+  conditionLabel: {
+    color: color.accent,
+    fontSize: '20px'
+  },
 
   liveWeather : {
     height: '225px',
