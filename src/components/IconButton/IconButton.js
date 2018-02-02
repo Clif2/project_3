@@ -18,9 +18,13 @@ class IconButton extends Component {
 
 
  componentDidMount () {
+   // console.log('iconbutton componentDidMount');
+   // this.setState((prevState) => ({selected: this.props.selected}))
+
  }
 
  onClick = e => {
+   e.preventDefault()
    //onClick
    //check type
    //if type is clothing and it is toggledOn send imgURL
@@ -41,8 +45,18 @@ class IconButton extends Component {
   }
   else  //assumes the only other case is 'weather'
   {
-    this.updateCurrentForm(this.type, this.icon.name,
-                            this.icon.imgURL)
+
+    if( toggle )
+    {
+      this.props.onChangeWeather(this.type, this.icon.name, this.
+                        icon.imgURL)
+      //this.updateCurrentForm(this.type, this.icon.name, this.
+        //                icon.imgURL)
+    }
+    else{
+      console.log('delete weather item');
+      this.props.onChangeWeather(this.type, this.icon.name, '')
+    }
   }
 
 this.setState((prevState) => ({selected: !prevState.selected}))
@@ -50,14 +64,33 @@ this.setState((prevState) => ({selected: !prevState.selected}))
 }//end onClick
 
   render () {
+    // if(this.type ==='weather'){
+    // console.log('rendering icons');
+    // console.log('name ' + this.icon.name);
+    // console.log('selected'+this.state.selected);}
+    let isIconSelected = false
+    if(this.type ==='weather'){
+      isIconSelected = this.props.selected
+    }
+    else{
+      isIconSelected = this.state.selected
+
+    }
     return (
       <div
-      className={css( this.state.selected ? styles.iconSelected : styles.iconInactive, styles.icon)}
-      onClick={this.onClick}>
 
-      {this.props.isRadio != null ? <WeatherFormIcon icon={this.icon} />
+          className={css( isIconSelected ? styles.iconSelected : styles.iconInactive, styles.icon)}
+          onClick={this.onClick}>
+
+
+      {this.props.isRadio != null ?
+        <div>
+          <WeatherFormIcon icon={this.icon} />
+        </div>
         :
-        <Icon icon={this.icon}/>
+        <div>
+          <Icon icon={this.icon}/>
+        </div>
       }
       </div>
       )
@@ -112,7 +145,7 @@ export const styles = StyleSheet.create({
 		animationTimingFunction:'ease',
 		animationDirection:'alternate',
     padding: 0,
-    boxShadow: '0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(23, 105, 237)',
+    boxShadow: '0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(222, 128, 237)',
 
     // boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
     borderRadius: '9px',

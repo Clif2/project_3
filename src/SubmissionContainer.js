@@ -204,10 +204,10 @@ then set state
 	if (!this.formValidator() )return
 
 		 createSubmission(this.state.currentForm).then(()=>{
-			 console.log('createdSubmission')
+			 // console.log('createdSubmission')
 			 getSubmittedForms().then(inputs => {
-				 console.log('gotsubmittedform')
-				 console.log(inputs);
+				 // console.log('gotsubmittedform')
+				 // console.log(inputs);
 				 this.setState(prevState => {
 					 return {
 						 updateToggle: false,

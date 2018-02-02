@@ -16,7 +16,7 @@ const iconStyle = {
 
 const SubmissionItem = props => {
       let clothing = props.input.clothes.map( (item, index) => {
-          console.log('map=>'+item);
+          // console.log('map=>'+item);
           let theIcon = { imgURL: item.imgURL,
                           name:item.name,
                           type:'clothes',

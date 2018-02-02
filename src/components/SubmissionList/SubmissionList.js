@@ -14,13 +14,13 @@ const oddStyle = {
 }
 
 const SubmissionList = props => {
-  console.log('props for submissionlist');
+  // console.log('props for submissionlist');
 
-  console.log(props.inputs);
+  // console.log(props.inputs);
   let inputs = props.inputs.map( (input, index)=>
       {
-        console.log('insubmissionlist');
-        console.log(input);
+        // console.log('insubmissionlist');
+        // console.log(input);
         let style = {}
         if(index%2) {style=evenStyle}
         else {style=oddStyle}

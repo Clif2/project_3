@@ -1,7 +1,8 @@
 import React from 'react'
 
 import IconButton from '../IconButton/IconButton.js'
-import WeatherFormIcon from '../WeatherFormIcon/WeatherFormIcon.js'
+import WeatherChoices from '../WeatherChoices/WeatherChoices.js'
+
 
 const SubmissionForm = (props) => {
 
@@ -33,18 +34,20 @@ const SubmissionForm = (props) => {
 
   let weather = []
   let clothes = []
-
+  //if the submit new input form
   if (!props.update){
     weather = props.weatherIcons.map((item, idx) =>{
     return(
       <IconButton
         updateCurrentForm={props.updateCurrentForm}
-        isRadio='1'
+        // isRadio='1'
         icon={item}
         type='weather'
         selected= {false}
         key={idx}
-      />)}
+      />)
+
+    }
     )//end map
 
     clothes = props.clothingIcons.map((item, idx) => {
@@ -59,6 +62,7 @@ const SubmissionForm = (props) => {
     }
     )//end map
   }//end if
+  //else the update input form
   else{
     weather = props.weatherIcons.map((item, idx) =>{
       let isSelected = false
@@ -66,7 +70,6 @@ const SubmissionForm = (props) => {
       return(
       <IconButton
         updateCurrentForm={props.updateCurrentForm}
-        isRadio='1'
         icon={item}
         type='weather'
         selected={isSelected}
@@ -101,10 +104,12 @@ const SubmissionForm = (props) => {
 
      { props.update === false ?
           <form onSubmit={onSubmit}>
-
             <div className="weather">
               <h1>Weather</h1>
-               {weather}
+              <WeatherChoices weather={props.weatherIcons}
+                              selectedWeather=''
+                              updateCurrentForm={props.updateCurrentForm}
+                              formData={props.formData}/>
              </div>
 
             <div className="clothing">
@@ -121,7 +126,10 @@ const SubmissionForm = (props) => {
           <form onSubmit={onUpdate}>
             <div className="weather">
               <h1>Weather</h1>
-               {weather}
+             <WeatherChoices weather={props.weatherIcons}
+                             selectedWeather={props.formData.weather}
+                             updateCurrentForm={props.updateCurrentForm}
+                             formData={props.formData}/>
              </div>
 
             <div className="clothing">
