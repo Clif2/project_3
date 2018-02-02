@@ -20,16 +20,15 @@ const Icon = ({icon}) => {
         alt={icon.name}
       />
   )
-
 }
 
 
 export default Icon
 
 const styles = StyleSheet.create ({
-  
+
   img: {
-    
+
   },
-  
+
 })

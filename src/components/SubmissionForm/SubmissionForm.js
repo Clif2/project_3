@@ -43,7 +43,6 @@ const SubmissionForm = (props) => {
     return(
       <IconButton
         updateCurrentForm={props.updateCurrentForm}
-        // isRadio='1'
         icon={item}
         type='weather'
         selected= {false}
@@ -127,6 +126,9 @@ const SubmissionForm = (props) => {
                     <label htmlFor="input-why">Why is this a good choice?: </label>
                     <textarea id="input-why" row="30" onChange={updateFields} name='why' />
                     <button className={css(styles.buttonSubmit)} type='submit'>Submit</button>
+                    {
+                      props.errorMsg && <div className={css(styles.errorMsg)}>{props.errorMsg}</div>
+                    }
                   </div>
                 </div>
               </div>
@@ -154,10 +156,12 @@ const SubmissionForm = (props) => {
                 <label  htmlFor="input-why">Why is this a good choice?: </label>
                 <textarea id="input-why" onChange={updateFields} name='why' row="20" placeholder={props.formData.why}/>
                 <button className={css(styles.buttonSubmit)} type='submit'>Update</button>
-                 <button className={css(styles.buttonSubmit)} onClick={deleteSubmission} name='delete'>Delete</button> 
-                </div>
-                </div>
-               </div>
+               <button className={css(styles.buttonSubmit)} onClick={deleteSubmission} name='delete'>Delete</button>
+                {
+                  props.errorMsg && <div className={css(styles.errorMsg)}>{props.errorMsg}</div>
+                }
+             </div>
+             </div>
               </form>
 
         }
@@ -219,8 +223,11 @@ const styles = StyleSheet.create ({
       fontSize: fontSize.body,
       fontWeight: '800',
       color: color.white
-    }
-  ,
+    },
+
+    errorMsg: {
+      color: 'red'
+    },
 
   innerCloths: {
     'grid-column': '2 / span 3'

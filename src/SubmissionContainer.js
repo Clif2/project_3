@@ -2,11 +2,10 @@
 GL & CP
 */
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import SubmissionForm from './components/SubmissionForm/SubmissionForm'
 import SubmissionList from './components/SubmissionList/SubmissionList'
-import axios from 'axios'
-
 import {
 	getSubmittedForms,
 	createSubmission,
@@ -24,6 +23,8 @@ class SubmissionContainer extends Component {
 
 		weather: [],
 		clothing: [],
+
+		errorMsg: '',
 
 		currentForm: {
 			weather: '',
@@ -155,13 +156,27 @@ class SubmissionContainer extends Component {
 
 	//validates the form fields so that at least 1 weather, 1 clothing, & a name exists
 	formValidator = () => {
-		if (this.state.currentForm.weather
-				&& this.state.currentForm.clothes.length > 0
-				&& this.state.currentForm.name)
+		let theError = ''
+
+		if(!this.state.currentForm.weather) {theError = 'Please select weather'}
+		else if(this.state.currentForm.clothes.length < 1){theError = 'Please select clothes'}
+		else if(!this.state.currentForm.name){theError = 'Please enter a name'}
+
+		if (!theError)
 		{
+				console.log('form valid');
 				return true
 		}
-		else { return false }
+		else {
+			console.log('form invalid');
+			this.setState( prevState => {
+				return {
+					errorMsg: theError,
+				 }
+			 })
+			 console.log('form still invalid');
+			return false
+		}
 
 	}//end formValidator
 
@@ -169,10 +184,9 @@ class SubmissionContainer extends Component {
 		// console.log('DELETED :', this.state.currentID)
 		removeSubmission(this.state.currentID).then(()=>{
 			getSubmittedForms().then(inputs => {
-				// console.log('gotsubmittedform')
-				// console.log(inputs);
 				this.setState(prevState => {
 					return {
+						errorMsg: '',
 						updateToggle: false,
 						formToggle: false,
 						inputs: inputs,
@@ -210,6 +224,7 @@ then set state
 				 // console.log(inputs);
 				 this.setState(prevState => {
 					 return {
+						 errorMsg: '',
 						 updateToggle: false,
 						 formToggle: false,
 						 inputs: inputs,
@@ -239,6 +254,7 @@ then set state
 					// console.log('gotsubmittedform')
 					this.setState(prevState => {
 						return {
+							errorMsg: '',
 							updateToggle: false,
 							formToggle: false,
 							inputs: inputs,
@@ -267,6 +283,7 @@ then set state
 						formData={this.state.currentForm}
 						name={this.state.currentForm.name}
 						why={this.state.currentForm.why}
+						errorMsg={this.state.errorMsg}
 						clothingIcons={this.state.clothing}
 						weatherIcons={this.state.weather}
 						handleUpdate={this.handleSubmissionUpdate}
@@ -274,7 +291,6 @@ then set state
 						handleDelete={this.handleDelete}
 						updateCurrentForm={this.updateCurrentForm}
 						updateFields={this.updateCurrentFromFields}
-						// forceUpdate={this.handleForceUpdate}
 					/>
 				) : (
 					<SubmissionList

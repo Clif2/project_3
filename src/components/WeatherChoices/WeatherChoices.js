@@ -21,10 +21,8 @@ class WeatherChoices extends Component {
    //calls the updateCurrentForm function passed down from parent
    //then sets the state for the current weather
    //thereby forcing a render to unselect other weather icons
-   // console.log('weatherchoices');
-   // console.log(this);
+
    if(imgURL){
-     // this.updateCurrentForm(type, name, imgURL)
      this.setState((prevState) => ({selectedWeather: name}), this.props.updateCurrentForm(type, name, imgURL))
    }
    else {
@@ -39,7 +37,7 @@ class WeatherChoices extends Component {
     let weather = ''
     // console.log('rerendering weather choices');
     if(!this.state.selectedWeather){
-      console.log( 'all icons should be false');
+
       weather = this.props.weather.map((item, idx) =>{
         console.log('everything should be getting deleted');
       return(
@@ -58,7 +56,6 @@ class WeatherChoices extends Component {
     else{
       weather = this.props.weather.map((item, idx) =>{
         let isSelected = false
-        // if (this.props.formData.weather===item.name) {isSelected = true}
         if (this.state.selectedWeather===item.name) {isSelected = true}
 
         return(

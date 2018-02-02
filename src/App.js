@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
   Route,
-  //Link,
   Redirect,
   Switch
 } from 'react-router-dom'
@@ -40,9 +39,9 @@ class App extends Component {
 export default App
 
 const styles = StyleSheet.create ({
-    
+
     app: {
-    
+
     backgroundColor: color.clightgrey,
     fontFamily: openSans.fontFamily,
     fontSize: fontSize.body
