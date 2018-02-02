@@ -48,8 +48,7 @@ class IconButton extends Component {
 
     if( toggle )
     {
-      this.props.onChangeWeather(this.type, this.icon.name, this.
-                        icon.imgURL)
+      this.props.onChangeWeather(this.type, this.icon.name, this.icon.imgURL)
       //this.updateCurrentForm(this.type, this.icon.name, this.
         //                icon.imgURL)
     }
@@ -126,20 +125,20 @@ const shrinkKeyFrames = {
 export const styles = StyleSheet.create({
 
   icon : {
-    height: '150px',
-    width: '150px',
+    height: '100px',
+    width: '100px',
+    margin: spaceing.s0,
     transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)'
  },
 
 
   iconInactive: {
     animationName: [shrinkKeyFrames],
-		animationDuration:'1s',
+		animationDuration:'.7s',
 		animationTimingFunction:'ease',
 		animationDirection:'alternate',
 		boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
     padding: 0,
-    margin: `${spaceing.s1}`,
     borderRadius: '9px',
     textDecoration: 'none',
     display: 'inline-block'
@@ -147,15 +146,16 @@ export const styles = StyleSheet.create({
 
   iconSelected: {
     animationName: [growKeyFrames],
-		animationDuration:'1s',
+		animationDuration:'.7s',
 		animationTimingFunction:'ease',
 		animationDirection:'alternate',
     padding: 0,
-    boxShadow: '0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(222, 128, 237)',
+    boxShadow: '0px 15px 15px -10px rgba(245,50,64, 1)', 
+      
+    //'0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(222, 128, 237)',
 
     // boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
     borderRadius: '9px',
-    margin: `${spaceing.s2}`,
     display: 'inline-block'
   }
 })
