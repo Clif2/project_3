@@ -11,7 +11,7 @@ const Nav = () => {
   return (
     <nav className={css(style.header)}>
       <div>
-        <h1 className={css(style.title)}> Weather Whiz </h1>
+        <h1 className={css(style.title)}> Weather Wise </h1>
       </div>
       {/* //for now Home automatically redirects to /submissions */}
       <div className={css(style.navItems)}>

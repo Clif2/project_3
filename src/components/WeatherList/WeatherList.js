@@ -39,9 +39,8 @@ const WeatherList = props => {
      <div className={css(styles.grid)}>
        {weathers}
      </div>
-    </div>
+   </div>
   )
-
 }
 
 export default WeatherList
