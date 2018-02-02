@@ -5,7 +5,6 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-// import logo from './logo.svg'
 
 import './App.css'
 import { StyleSheet, css } from 'aphrodite/no-important'

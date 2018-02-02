@@ -8,10 +8,10 @@ From the About section
 * Users can access previous weather selections through saved forms, can edit or delete forms, and can add or remove comments to their form inputs.
 * Connects to WeatherWise API to store and retrieve data
 
-# Written By
-* Rindy
-* Cliff
+# Member Contributions
+* Cliff--
 * Gwen--Specifically worked on the overall logic, and building the various Weather Components and SubmissionList Component
+* Rindy--Shadowed both Cliff and Gwen on components on the Front-End-participated in writing a few as well.
 
 # Technologies used
 * React 

@@ -32,20 +32,21 @@ export const color = {
 
 
 // TYPOGRAPHY 
-
 export const greatFont = {
- fontFamily: "'Fredericka the Great', cursive;",
- fontStyle: "normal",
- fontWeight: "normal",
- src: "url('https://fonts.googleapis.com/css?family=Fredericka+the+Great') format('woff2')"
-}
+  fontFamily: "'Fredericka the Great', cursive;",
+  fontStyle: "normal",
+  fontWeight: "normal",
+  src: "url('https://fonts.googleapis.com/css?family=Fredericka+the+Great') format('woff2')"
+};
 
 export const cabinFont = {
- fontFamily: "'Cabin Sketch', serif;",
- fontStyle: "normal",
- fontWeight: "normal",
- src: "url('https://fonts.googleapis.com/css?family=Fredericka+the+Great') format('woff2')"
-}
+  fontFamily: "'Cabin Sketch', cursive;",
+  fontStyle: "normal",
+  fontWeight: "normal",
+  src: "url('https://fonts.googleapis.com/css?family=Fredericka+the+Great') format('woff2')"
+};
+
+
 
 export const openSans = {
   fontFamily:"'Open Sans', sans-serif;"

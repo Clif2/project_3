@@ -16,7 +16,5 @@ const Icon = ({icon}) => {
         alt={icon.name}
       />
   )
-
 }
-
 export default Icon

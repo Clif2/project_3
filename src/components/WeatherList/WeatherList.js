@@ -17,27 +17,33 @@ const WeatherList = props => {
 
 
 
-  let weathers = props.weathers.map( (item, index)=>
-      {
-        let theIcon = { imgURL: item.imgURL,
-                        name: item.name,
-                        type: 'weather',
-                        style: iconStyle}
-        return ( <IconButton     key={index}
-                                 updateCurrentForm={props.handleUpdate}
-                                 icon={theIcon}/>
-                                 )
-      })
+  let weathers = props.weathers.map((item, index) => {
+    let theIcon = {
+      imgURL: item.imgURL,
+      name: item.name,
+      type: 'weather',
+      style: iconStyle
+    }
+    return ( < IconButton key = {
+        index
+      }
+      updateCurrentForm = {
+        props.handleUpdate
+      }
+      icon = {
+        theIcon
+      }
+      />
+    )
+  })
 
 
-
-  return (
+  return ( 
     <div>
-     <h1>Choose Your Weather</h1>
-     {weathers}
+    <h1> Choose Your Weather </h1> 
+    {weathers} 
     </div>
   )
-
 }
 
 export default WeatherList
