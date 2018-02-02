@@ -2,11 +2,10 @@
 GL & CP
 */
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import SubmissionForm from './components/SubmissionForm/SubmissionForm'
 import SubmissionList from './components/SubmissionList/SubmissionList'
-import axios from 'axios'
-
 import {
 	getSubmittedForms,
 	createSubmission,

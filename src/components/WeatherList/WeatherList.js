@@ -4,6 +4,7 @@ GL
 import React from 'react'
 
 import IconButton from '../IconButton/IconButton'
+import LiveWeather from '../LiveWeather/LiveWeather'
 
 //import components
 
@@ -24,7 +25,8 @@ const WeatherList = props => {
       type: 'weather',
       style: iconStyle
     }
-    return ( < IconButton key = {
+    return (
+      < IconButton key = {
         index
       }
       updateCurrentForm = {
@@ -38,10 +40,11 @@ const WeatherList = props => {
   })
 
 
-  return ( 
+  return (
     <div>
-    <h1> Choose Your Weather </h1> 
-    {weathers} 
+      <LiveWeather/>
+      <h1> Choose Your Weather </h1>
+      {weathers}
     </div>
   )
 }

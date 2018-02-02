@@ -21,10 +21,8 @@ class WeatherChoices extends Component {
    //calls the updateCurrentForm function passed down from parent
    //then sets the state for the current weather
    //thereby forcing a render to unselect other weather icons
-   // console.log('weatherchoices');
-   // console.log(this);
+
    if(imgURL){
-     // this.updateCurrentForm(type, name, imgURL)
      this.setState((prevState) => ({selectedWeather: name}), this.props.updateCurrentForm(type, name, imgURL))
    }
    else {
