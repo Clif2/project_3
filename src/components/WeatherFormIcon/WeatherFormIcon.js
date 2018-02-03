@@ -26,7 +26,7 @@ const hiddenInput = {
       <div className={css( styles.ccSelector)}>
         className='cc-selector'>
        <input style={hiddenInput} id={icon.name} type='radio' name='weather'
-         // name={icon.name}
+         
     />
      <img src={icon.imgURL} style={iconStyle} alt={icon.name}/>
      </div>

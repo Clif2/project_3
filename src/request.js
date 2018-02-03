@@ -3,7 +3,7 @@ import axios from 'axios'
 const url = 'https://project3api.herokuapp.com/'
 
 //
-//Form input calls 
+//Form input calls
 //
 export function getSubmittedForms() {
   return axios.get(url + 'input')
@@ -34,10 +34,3 @@ export function removeSubmission( id ) {
             console.log(response)
           })
 }
-
-//
-//Clothing calls
-//
-
-
-

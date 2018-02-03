@@ -1,17 +1,17 @@
 /*
 GL & CP
 */
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
 
-import SubmissionForm from './components/SubmissionForm/SubmissionForm'
-import SubmissionList from './components/SubmissionList/SubmissionList'
+import SubmissionForm from './components/SubmissionForm/SubmissionForm';
+import SubmissionList from './components/SubmissionList/SubmissionList';
 import {
 	getSubmittedForms,
 	createSubmission,
 	updateSubmission,
 	removeSubmission
-} from './request.js'
+} from './request.js';
 // } from './request.js'
 
 class SubmissionContainer extends Component {
@@ -32,32 +32,32 @@ class SubmissionContainer extends Component {
 			name: '',
 			why: ''
 		}
-	}
+	};
 
 	//Toggles whether or not the form component is showing
 	toggleForm = () => {
-		this.setState({ formToggle: !this.state.formToggle })
-
-}
+		this.setState({ formToggle: !this.state.formToggle });
+	};
 
 	toggleUpdate = () => {
-		this.setState({ updateToggle: !this.state.updateToggle })
-	}
+		this.setState({ updateToggle: !this.state.updateToggle });
+	};
 
 	// when you click on Update Button in SubmissionList
 	handleUpdate = id => {
-			axios.get('https://project3api.herokuapp.com/input/'+id)
-					 .then(response => {
-							this.setState(prevState => {
-								return {
-									formToggle: true,
-									updateToggle: true,
-									currentID: id,
-									currentForm: response.data
-								}
-							})
-					})
-	}
+		axios
+			.get('https://project3api.herokuapp.com/input/' + id)
+			.then(response => {
+				this.setState(prevState => {
+					return {
+						formToggle: true,
+						updateToggle: true,
+						currentID: id,
+						currentForm: response.data
+					};
+				});
+			});
+	};
 
 	// FUNCTIONS TO HANDLE FORM SUBMISSION
 
@@ -65,30 +65,24 @@ class SubmissionContainer extends Component {
 		//get all inputs
 		getSubmittedForms().then(data => {
 			this.setState(prevState => {
-				return { inputs: data }
-			})
-		})
+				return { inputs: data };
+			});
+		});
 
 		//get weather data and icons
-		axios.get('https://project3api.herokuapp.com/weather')
-				 .then(response => {
-							this.setState(prevState => {
-														return { weather: response.data }
-			})
-		})
+		axios.get('https://project3api.herokuapp.com/weather').then(response => {
+			this.setState(prevState => {
+				return { weather: response.data };
+			});
+		});
 
 		//get clothes data and icons
-		//console.group('Clothes API')
 		axios.get('https://project3api.herokuapp.com/clothing').then(response => {
-			// console.log('api call repsonse :', response )
 			this.setState(prevState => {
-				// console.table(response.data)
-				return { clothing: response.data }
-			})
-		})
-		// console.groupEnd()
+				return { clothing: response.data };
+			});
+		});
 	}
-
 
 	//Updates currentForm State on Click
 
@@ -96,93 +90,69 @@ class SubmissionContainer extends Component {
 		//copying current state and make changes,
 		//basics of idea found at www.fourm.freecodecamp.org...
 		//.../t/reactjs-using-state-to-update-single-property-on-an-object
-		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
-		//console.log('updateCurrentFrom copy: ', formCopy)
-		if(type === 'weather'){
-			if (imgURL)
-			{
-				formCopy[type] = name
+		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm));
+		if (type === 'weather') {
+			if (imgURL) {
+				formCopy[type] = name;
+			} else {
+				formCopy.weather = '';
 			}
-			else {
-				formCopy.weather = ''}
-		}
-		else if(type === 'clothes'){
-			// console.log('the imgURL =>' +imgURL);
+		} else if (type === 'clothes') {
 			//if imgURL present then push item on list
-			if (imgURL)
-			{
-				formCopy.clothes.push({ name: name,
-														imgURL: imgURL})
-			}
-			else {
-				// console.log('we are deleting in updateCurrentForm');
-				 //if imgURL not present remove item from clothes array
-				 formCopy.clothes = formCopy.clothes.filter( (item) => {
-				 		return item.name !== name})
+			if (imgURL) {
+				formCopy.clothes.push({
+					name: name,
+					imgURL: imgURL
+				});
+			} else {
+				//if imgURL not present remove item from clothes array
+				formCopy.clothes = formCopy.clothes.filter(item => {
+					return item.name !== name;
+				});
 			}
 		}
 
 		this.setState(prevState => {
-			return { currentForm: formCopy }
-		})
-	}
+			return { currentForm: formCopy };
+		});
+	};
 
 	updateCurrentFromFields = (field, value) => {
-		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm))
-		formCopy[field] = value
-		// console.log('updateCurrentFromFields');
-		// console.log(formCopy)
+		let formCopy = JSON.parse(JSON.stringify(this.state.currentForm));
+		formCopy[field] = value;
 		this.setState(prevState => {
-			return { currentForm: formCopy }
-		})
-	}
+			return { currentForm: formCopy };
+		});
+	};
 
-//Handles Submission
-
-//-------------------------------------------------------
-//FIX --i dont think these two functions are necessary
-	submitFormData = () => {
-		// console.log('Submit Form Data Fired')
-		// console.table(this.state.currentForm)
-		createSubmission(this.state.currentForm)
-	}
-
-	updateFormData = () => {
-		// console.log('Update Form Fired')
-		// console.table(this.state.currentForm)
-		updateSubmission(this.state.currentID, this.state.currentForm)
-	}
-//-------------------------------------------------------
+	//Handles Submission
 
 	//validates the form fields so that at least 1 weather, 1 clothing, & a name exists
 	formValidator = () => {
-		let theError = ''
+		let theError = '';
 
-		if(!this.state.currentForm.weather) {theError = 'Please select weather'}
-		else if(this.state.currentForm.clothes.length < 1){theError = 'Please select clothes'}
-		else if(!this.state.currentForm.name){theError = 'Please enter a name'}
-
-		if (!theError)
-		{
-				console.log('form valid');
-				return true
+		if (!this.state.currentForm.weather) {
+			theError = 'Please select weather';
+		} else if (this.state.currentForm.clothes.length < 1) {
+			theError = 'Please select clothes';
+		} else if (!this.state.currentForm.name) {
+			theError = 'Please enter a name';
 		}
-		else {
-			console.log('form invalid');
-			this.setState( prevState => {
+
+		if (!theError) {
+			return true;
+		} else {
+			this.setState(prevState => {
 				return {
-					errorMsg: theError,
-				 }
-			 })
-			 console.log('form still invalid');
-			return false
+					errorMsg: theError
+				};
+			});
+			return false;
 		}
-
-	}//end formValidator
+	}; //end formValidator
 
 	handleDelete = () => {
-		// console.log('DELETED :', this.state.currentID)
-		removeSubmission(this.state.currentID).then(()=>{
+		removeSubmission(this.state.currentID).then(() => {
 			getSubmittedForms().then(inputs => {
 				this.setState(prevState => {
 					return {
@@ -197,11 +167,11 @@ class SubmissionContainer extends Component {
 							name: '',
 							why: ''
 						}
-					}//end return
-				})//end setState
-			})//end then getSumittedForms
-		})//end removeSubmission
-	}//end handleDelete
+					}; //end return
+				}); //end setState
+			}); //end then getSumittedForms
+		}); //end removeSubmission
+	}; //end handleDelete
 
 	handleSubmission = () => {
 		//copies currnet form
@@ -209,70 +179,58 @@ class SubmissionContainer extends Component {
 		// formCopy.name = nameSub
 		// formCopy.why = whySub
 
-/*
+		/*
 should validate form
 then createSubmission
 then get the new list of inputs from the db
 then set state
 */
-	if (!this.formValidator() )return
+		if (!this.formValidator()) return;
 
-		 createSubmission(this.state.currentForm).then(()=>{
-			 // console.log('createdSubmission')
-			 getSubmittedForms().then(inputs => {
-				 // console.log('gotsubmittedform')
-				 // console.log(inputs);
-				 this.setState(prevState => {
-					 return {
-						 errorMsg: '',
-						 updateToggle: false,
-						 formToggle: false,
-						 inputs: inputs,
-						 currentID: '',
- 						currentForm: {
+		createSubmission(this.state.currentForm).then(() => {
+			getSubmittedForms().then(inputs => {
+				this.setState(prevState => {
+					return {
+						errorMsg: '',
+						updateToggle: false,
+						formToggle: false,
+						inputs: inputs,
+						currentID: '',
+						currentForm: {
 							weather: '',
 							clothes: [],
 							name: '',
 							why: ''
 						}
-					 }//end return
-				 })//end setState
-
-			 })//end then getSumittedForms
-
-		})//end then createSubmission
-
-	}//end handleSubmission
+					}; //end return
+				}); //end setState
+			}); //end then getSumittedForms
+		}); //end then createSubmission
+	}; //end handleSubmission
 
 	//Handles Updating Input
 	handleSubmissionUpdate = () => {
-		if (!this.formValidator() )return
-		updateSubmission(this.state.currentID, this.state.currentForm)
-			.then(()=>{
-				// console.log('updatedSubmission')
-				getSubmittedForms().then(inputs => {
-					// console.log('gotsubmittedform')
-					this.setState(prevState => {
-						return {
-							errorMsg: '',
-							updateToggle: false,
-							formToggle: false,
-							inputs: inputs,
-							currentID: '',
-							currentForm: {
-								weather: '',
-								clothes: [],
-								name: '',
-								why: ''
-							}
-						}//end return
-					})//end setState
-
-				})//end then getSumittedForms
-
-			})//end then updateSubmission
-
-	}
+		if (!this.formValidator()) return;
+		updateSubmission(this.state.currentID, this.state.currentForm).then(() => {
+			getSubmittedForms().then(inputs => {
+				this.setState(prevState => {
+					return {
+						errorMsg: '',
+						updateToggle: false,
+						formToggle: false,
+						inputs: inputs,
+						currentID: '',
+						currentForm: {
+							weather: '',
+							clothes: [],
+							name: '',
+							why: ''
+						}
+					}; //end return
+				}); //end setState
+			}); //end then getSumittedForms
+		}); //end then updateSubmission
+	};
 
 	render() {
 		return (
@@ -300,8 +258,8 @@ then set state
 					/>
 				)}
 			</div>
-		)
+		);
 	}
 }
 
-export default SubmissionContainer
+export default SubmissionContainer;
