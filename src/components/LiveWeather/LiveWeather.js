@@ -18,8 +18,11 @@ const iconStyle = {
 	margin: '9px'
 };
 
+
+// could put this URL in request.js
 const URL =
 	'https://api.apixu.com/v1/current.json?key=3bbfa05e4baa44a39d7155146180202&q=';
+
 class LiveWeather extends Component {
 	state = {
 		temperature: '',

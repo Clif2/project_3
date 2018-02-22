@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { spaceing } from '../../styles/base.css.js';
 
-import Icon from '../Icon/Icon';
+import Icon from '../Icon/Icon'; // Composability!
 import WeatherFormIcon from '../WeatherFormIcon/WeatherFormIcon.js';
 
 class IconButton extends Component {
@@ -46,7 +46,7 @@ class IconButton extends Component {
 		} else {
 			//else this is a weatherview button
 			this.updateCurrentForm(this.type, this.icon.name, this.icon.imgURL);
-			return;
+			return; // i'm thinking this return is unnecessary
 		}
 
 		this.setState(prevState => ({ selected: !prevState.selected }));
