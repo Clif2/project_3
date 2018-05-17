@@ -9,9 +9,9 @@ From the About section
 * Connects to WeatherWise API to store and retrieve data
 
 # Member Contributions
-* # Cliff--Front-End Components, Design, Amimations 
-* # Gwen--Specifically worked on the overall logic, and building the various Weather Components and SubmissionList Component
-* # Rindy--Shadowed both Cliff and Gwen on components on the Front-End-participated in writing a few as well.
+* Cliff--Front-End Components, Design, Amimations 
+* Gwen--Specifically worked on the overall logic, and building the various Weather Components and SubmissionList Component
+* Rindy--Shadowed both Cliff and Gwen on components on the Front-End-participated in writing a few as well.
 
 # Technologies used
 * React 
