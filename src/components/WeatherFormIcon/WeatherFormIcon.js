@@ -4,69 +4,63 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaceing } from '../../styles/base.css.js'
  // functional component that returns an icon
 
-
 const WeatherFormIcon = ({icon}) => {
-
-const iconStyle = {
+  const iconStyle = {
     height: '150px',
-   width: '150px',
-   borderRadius: '9px'
-}
+    width: '150px',
+    borderRadius: '9px'
+  }
 
-const hiddenInput = {
-   marging: '0',
-   padding: '0',
-   appearance: 'none' //,
-   //visibility: 'hidden'
-}
-
-
+  const hiddenInput = {
+    marging: '0',
+    padding: '0',
+    appearance: 'none' //,
+    // visibility: 'hidden'
+  }
 
   return (
-      <div className={css( styles.ccSelector)}>
+    <div className={css(styles.ccSelector)}>
         className='cc-selector'>
-       <input style={hiddenInput} id={icon.name} type='radio' name='weather'
-         
-    />
-     <img src={icon.imgURL} style={iconStyle} alt={icon.name}/>
-     </div>
-   )
-
+       <input style={hiddenInput} id={icon.name} type='radio' name='weather' />
+      <img src={icon.imgURL} style={iconStyle} alt={icon.name} />
+    </div>
+  )
 }
 
 export default WeatherFormIcon
 
+// I might move your object style declarations into a separate file and import them here
+
 const growKeyFrames = {
 
-   '0%':  {transform: 'scale(1.0)' },
-   '50%': {transform: 'scale(1.333)' },
-   '100%': {transform: 'scaleY(1.0)'}
+  '0%': {transform: 'scale(1.0)' },
+  '50%': {transform: 'scale(1.333)' },
+  '100%': {transform: 'scaleY(1.0)'}
 
 }
 
 const shrinkKeyFrames = {
 
-   '0%':  {transform: 'scale(1.0)' },
-   '50%': {transform: 'scale(.65)' },
-   '100%': {transform: 'scaleY(1.0)'}
+  '0%': {transform: 'scale(1.0)' },
+  '50%': {transform: 'scale(.65)' },
+  '100%': {transform: 'scaleY(1.0)'}
 
 }
 
 export const styles = StyleSheet.create({
 
-  icon : {
+  icon: {
     height: '150px',
     width: '150px',
     transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)'
- },
-
+  },
 
   iconInactive: {
     animationName: [shrinkKeyFrames],
-		animationDuration:'1s',
-		animationTimingFunction:'ease',
-		animationDirection:'alternate',
-		boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+    animationDuration: '1s',
+    animationTimingFunction: 'ease',
+    animationDirection: 'alternate',
+    boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
     padding: 0,
     margin: `${spaceing.s1}`,
     borderRadius: '9px',
@@ -76,9 +70,9 @@ export const styles = StyleSheet.create({
 
   iconSelected: {
     animationName: [growKeyFrames],
-		animationDuration:'1s',
-		animationTimingFunction:'ease',
-		animationDirection:'alternate',
+    animationDuration: '1s',
+    animationTimingFunction: 'ease',
+    animationDirection: 'alternate',
     padding: 0,
     boxShadow: '0 19px 38px rgb(23, 105, 237), 0 15px 12px rgb(222, 128, 237)',
 
@@ -89,11 +83,7 @@ export const styles = StyleSheet.create({
   }
 })
 
-
-
-
-
-//+++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++
 // .cc-selector input{
 //     margin:0;padding:0;
 //     -webkit-appearance:none;
